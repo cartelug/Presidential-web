@@ -93,6 +93,7 @@ h1,h2,h3,h4,h5{font-family:var(--display);font-weight:600;line-height:1.05;lette
 .btn-mini{border:1px solid var(--ink);color:var(--ink);padding:9px 16px;border-radius:30px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:.25s}
 .btn-mini:hover{background:var(--ink);color:var(--paper)}
 .burger{display:none;background:none;border:none;color:var(--ink);cursor:pointer}
+.menu{display:none} /* off-canvas panel — shown only in the ≤680px query below */
 .burger svg{width:26px;height:26px}
 
 /* ============ scroll-spy rail ============ */
@@ -343,6 +344,58 @@ footer{background:var(--dark);color:var(--on-dark);padding:66px var(--gutter) 42
   .ticker .ti:not(:nth-child(-n+2)){border-top:1px solid var(--line)}
 }
 @media(max-width:480px){.stat-grid,.gal{grid-template-columns:1fr}.gal .wide{grid-column:span 1}}
+/* ================= 04 · THE INTERACTIVE ROAD ================= */
+.road{position:relative;height:560vh;background:#0b0a07;color:var(--on-dark)}
+.road-stage{position:sticky;top:0;height:100vh;overflow:hidden;perspective:300px;perspective-origin:50% 46%;
+  background:linear-gradient(180deg,#0a0906 0%,#120d06 38%,#2a2010 53%,#6b4f1c 63%,#b98a2e 74%,#e9c46a 87%,#f6e2a6 100%)}
+.road-sky-layer{position:absolute;inset:0;pointer-events:none}
+.road-sun{position:absolute;left:50%;top:47%;width:min(46vh,380px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(255,239,196,.95),rgba(233,196,106,.34) 44%,transparent 70%)}
+.road-horizon{position:absolute;left:0;right:0;top:47%;display:flex;justify-content:center;transform:translateY(-100%)}
+.road-horizon svg{width:min(900px,98%);height:auto;color:#160f06;opacity:.94}
+.road-floor{position:absolute;left:50%;bottom:-16%;width:230%;height:152%;transform:translateX(-50%) rotateX(81deg);transform-origin:50% 100%;
+  background-color:#100e08;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(246,226,150,.95) 0 46px,transparent 46px 108px),
+    repeating-linear-gradient(0deg,rgba(224,190,110,.68) 0 12px,transparent 12px 132px),
+    repeating-linear-gradient(0deg,rgba(224,190,110,.68) 0 12px,transparent 12px 132px),
+    linear-gradient(90deg,transparent 41.2%,rgba(240,222,150,.5) 41.6%,rgba(240,222,150,.5) 42.4%,transparent 42.8%,transparent 57.2%,rgba(240,222,150,.5) 57.6%,rgba(240,222,150,.5) 58.4%,transparent 58.8%);
+  background-size:16px 108px,10px 132px,10px 132px,100% 100%;
+  background-position:50% 0,42% 0,58% 0,center;
+  background-repeat:repeat-y,repeat-y,repeat-y,no-repeat;
+  box-shadow:inset 0 0 220px 80px rgba(0,0,0,.62)}
+.road-fade{position:absolute;left:0;right:0;top:38%;height:20%;pointer-events:none;background:linear-gradient(180deg,#2a2010,rgba(42,32,16,0))}
+.road-daylight{position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(120% 82% at 50% 62%,rgba(246,226,166,.5),transparent 60%)}
+.road-eyebrow{position:absolute;left:clamp(20px,4vw,54px);top:clamp(84px,12vh,120px);z-index:5;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-3)}
+.road-odo{position:absolute;left:50%;top:clamp(74px,10vh,104px);transform:translateX(-50%);z-index:5;text-align:center;
+  background:rgba(10,9,6,.66);border:1px solid rgba(227,190,99,.34);border-radius:999px;padding:9px 22px}
+.road-odo b{font-family:var(--display);font-size:clamp(23px,4vw,33px);color:#fff;letter-spacing:-.01em;display:block;line-height:1;font-variant-numeric:tabular-nums}
+.road-odo span{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-2)}
+.road-beats{position:absolute;left:clamp(20px,5vw,64px);bottom:clamp(40px,9vh,86px);z-index:6;width:min(430px,86vw)}
+.road-beat{position:absolute;left:0;bottom:0;width:100%;opacity:0;will-change:transform,opacity;
+  background:linear-gradient(180deg,rgba(14,11,7,.82),rgba(14,11,7,.92));border:1px solid rgba(227,190,99,.3);border-left:3px solid var(--gold-2);border-radius:4px;padding:20px 24px}
+.rb-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-3)}
+.rb-big{display:block;font-family:var(--display);font-size:clamp(28px,6vw,44px);color:#fff;line-height:1.02;margin:8px 0 10px}
+.rb-fact{font-size:14.5px;line-height:1.6;color:var(--on-dark)}
+.rb-mk{display:block;margin-top:14px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--on-dark-2)}
+.road-prog{position:absolute;right:clamp(16px,3vw,40px);top:50%;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;gap:12px}
+.road-prog i{width:8px;height:8px;border-radius:50%;background:rgba(227,190,99,.28);transition:background .3s,transform .3s}
+.road-prog i.on{background:var(--gold-2);transform:scale(1.6)}
+.road-cue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:5;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--on-dark-2);transition:opacity .4s}
+.road.rm{height:auto}
+.road.rm .road-stage{position:relative;height:auto;overflow:visible;perspective:none;padding:clamp(70px,10vh,120px) 0}
+.road.rm .road-floor,.road.rm .road-fade,.road.rm .road-sun,.road.rm .road-horizon,.road.rm .road-daylight,.road.rm .road-prog,.road.rm .road-cue{display:none}
+.road.rm .road-eyebrow,.road.rm .road-odo{position:relative;left:auto;top:auto;transform:none;display:block;text-align:center}
+.road.rm .road-eyebrow{margin-bottom:16px}.road.rm .road-odo{margin:0 auto 30px;width:max-content}
+.road.rm .road-beats{position:relative;left:auto;bottom:auto;inset:auto;width:min(680px,92vw);margin:0 auto;display:flex;flex-direction:column;gap:18px}
+.road.rm .road-beat{position:relative;opacity:1;transform:none}
+@media(max-width:820px){
+  .road{height:480vh}
+  .road-floor{bottom:-24%;width:300%}
+  .road-beats{left:50%;transform:translateX(-50%);bottom:clamp(26px,6vh,58px);width:92vw}
+  .road-prog{display:none}
+  .road-eyebrow{top:76px}
+}
 </style>
 </head>
 <body>
@@ -381,11 +434,12 @@ footer{background:var(--dark);color:var(--on-dark);padding:66px var(--gutter) 42
   <a href="#inheritance" data-sec="inheritance"><span class="dot"></span><span class="rn">01</span><span class="rl">The Inheritance</span></a>
   <a href="#numbers" data-sec="numbers"><span class="dot"></span><span class="rn">02</span><span class="rl">By the Numbers</span></a>
   <a href="#journey" data-sec="journey"><span class="dot"></span><span class="rn">03</span><span class="rl">The Journey</span></a>
-  <a href="#achievements" data-sec="achievements"><span class="dot"></span><span class="rn">04</span><span class="rl">Achievements</span></a>
-  <a href="#regions" data-sec="regions"><span class="dot"></span><span class="rn">05</span><span class="rl">The Regions</span></a>
-  <a href="#voices" data-sec="voices"><span class="dot"></span><span class="rn">06</span><span class="rl">Voices</span></a>
-  <a href="#gallery" data-sec="gallery"><span class="dot"></span><span class="rn">07</span><span class="rl">In Pictures</span></a>
-  <a href="#future" data-sec="future"><span class="dot"></span><span class="rn">08</span><span class="rl">What’s Next</span></a>
+  <a href="#road" data-sec="road"><span class="dot"></span><span class="rn">04</span><span class="rl">The Road</span></a>
+  <a href="#achievements" data-sec="achievements"><span class="dot"></span><span class="rn">05</span><span class="rl">Achievements</span></a>
+  <a href="#regions" data-sec="regions"><span class="dot"></span><span class="rn">06</span><span class="rl">The Regions</span></a>
+  <a href="#voices" data-sec="voices"><span class="dot"></span><span class="rn">07</span><span class="rl">Voices</span></a>
+  <a href="#gallery" data-sec="gallery"><span class="dot"></span><span class="rn">08</span><span class="rl">In Pictures</span></a>
+  <a href="#future" data-sec="future"><span class="dot"></span><span class="rn">09</span><span class="rl">What’s Next</span></a>
 </aside>
 
 <!-- HERO -->
@@ -474,11 +528,39 @@ footer{background:var(--dark);color:var(--on-dark);padding:66px var(--gutter) 42
   <div class="tl-cue">← scroll the timeline →</div>
 </section>
 
-<!-- 04 ACHIEVEMENTS (tabbed explorer) -->
+<!-- 04 · THE ROAD (interactive scrollytelling) -->
+<section class="road" id="road" aria-label="The Road to 2026 — Uganda's road and infrastructure transformation">
+  <div class="road-stage">
+    <div class="road-sky-layer">
+      <div class="road-sun"></div>
+      <div class="road-horizon">
+        <svg viewBox="0 0 900 130" preserveAspectRatio="xMidYMax meet" fill="currentColor" aria-hidden="true">
+          <rect x="70" y="88" width="30" height="42"/><rect x="104" y="66" width="22" height="64"/><rect x="130" y="96" width="26" height="34"/>
+          <rect x="300" y="60" width="26" height="70"/><rect x="330" y="76" width="20" height="54"/>
+          <rect x="430" y="42" width="20" height="88"/><rect x="454" y="54" width="16" height="76"/>
+          <rect x="600" y="82" width="30" height="48"/><rect x="634" y="64" width="22" height="66"/><rect x="660" y="92" width="26" height="38"/>
+          <path d="M212 130 V54 h6 V44 h72 l-9 12 h-3 V60 h-3 V130 Z"/><path d="M215 46 l-11 8 h11 Z"/>
+          <path d="M518 130 l11 -58 l11 58 M523 98 h16 M526 84 h10" stroke="currentColor" stroke-width="2.4" fill="none"/>
+          <path d="M758 130 l11 -58 l11 58 M763 98 h16 M766 84 h10" stroke="currentColor" stroke-width="2.4" fill="none"/>
+        </svg>
+      </div>
+    </div>
+    <div class="road-floor" id="roadFloor"></div>
+    <div class="road-fade"></div>
+    <div class="road-daylight" id="roadDaylight"></div>
+    <div class="road-eyebrow">04 · The Road · 1986&nbsp;→&nbsp;2026</div>
+    <div class="road-odo"><b id="roadKm">0</b><span>km of national road · 1986 → 2026</span></div>
+    <div class="road-prog" id="roadProg"></div>
+    <div class="road-beats" id="roadBeats"></div>
+    <div class="road-cue" id="roadCue">Scroll to travel the road ↓</div>
+  </div>
+</section>
+
+<!-- 05 ACHIEVEMENTS (tabbed explorer) -->
 <section class="band explorer" id="achievements">
   <div class="wrap">
     <div class="head rv">
-      <div class="kicker">04 · The record</div>
+      <div class="kicker">05 · The record</div>
       <h2>Achievements across every sector</h2>
       <p>Eight fronts of national transformation. Select a sector to explore the evidence.</p>
     </div>
@@ -487,11 +569,11 @@ footer{background:var(--dark);color:var(--on-dark);padding:66px var(--gutter) 42
   </div>
 </section>
 
-<!-- 05 REGIONS -->
+<!-- 06 REGIONS -->
 <section class="band" id="regions">
   <div class="wrap">
     <div class="head rv">
-      <div class="kicker">05 · Across the nation</div>
+      <div class="kicker">06 · Across the nation</div>
       <h2>The change reached every corner</h2>
       <p>From the capital to the furthest district, renewal is written across the whole country. Select a region.</p>
     </div>
@@ -522,11 +604,11 @@ footer{background:var(--dark);color:var(--on-dark);padding:66px var(--gutter) 42
   </div>
 </section>
 
-<!-- 06 VOICES -->
+<!-- 07 VOICES -->
 <section class="band voices" id="voices">
   <div class="wrap">
     <div class="head center rv">
-      <div class="kicker">06 · Voices from the ground</div>
+      <div class="kicker">07 · Voices from the ground</div>
       <h2>Behind every number, a life changed</h2>
       <p>The transformation is most real in the stories of ordinary Ugandans. <em style="color:var(--ink-3)">(Sample stories — real testimonies to be added.)</em></p>
     </div>
@@ -538,11 +620,11 @@ footer{background:var(--dark);color:var(--on-dark);padding:66px var(--gutter) 42
   </div>
 </section>
 
-<!-- 07 GALLERY -->
+<!-- 08 GALLERY -->
 <section class="band" id="gallery">
   <div class="wrap">
     <div class="head rv">
-      <div class="kicker">07 · Forty years in pictures</div>
+      <div class="kicker">08 · Forty years in pictures</div>
       <h2>Moments that built a nation</h2>
       <p>A visual record of the journey — each frame ready for your archive photography.</p>
     </div>
@@ -557,11 +639,11 @@ footer{background:var(--dark);color:var(--on-dark);padding:66px var(--gutter) 42
   </div>
 </section>
 
-<!-- 08 VISION (dark) -->
+<!-- 09 VISION (dark) -->
 <section class="band dark" id="future">
   <div class="wrap">
     <div class="head center rv">
-      <div class="kicker light">08 · The next chapter</div>
+      <div class="kicker light">09 · The next chapter</div>
       <h2>From a peasant economy to a modern, prosperous nation</h2>
       <p>The foundation is laid. The decade ahead is industrialisation, oil and Vision 2040 — turning four decades of groundwork into shared prosperity.</p>
     </div>
@@ -638,7 +720,7 @@ function animateStat(el){if(el.dataset.done)return;el.dataset.done=1;
 const railLinks=[...document.querySelectorAll('.rail a')];
 const secObserver=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){
   const id=e.target.id;railLinks.forEach(a=>a.classList.toggle('active',a.dataset.sec===id));}})},{rootMargin:'-45% 0px -50% 0px'});
-['hero','inheritance','numbers','journey','achievements','regions','voices','gallery','future'].forEach(id=>{const el=document.getElementById(id);if(el)secObserver.observe(el);});
+['hero','inheritance','numbers','journey','road','achievements','regions','voices','gallery','future'].forEach(id=>{const el=document.getElementById(id);if(el)secObserver.observe(el);});
 
 /* ---------- charts ---------- */
 function bars(data,max){
@@ -762,6 +844,59 @@ const TL=[['1986','A fundamental change','The NRM takes power, ending years of c
 ['2024','Karuma commissioned','The 600 MW Karuma Dam lifts national capacity past 2,000 MW.'],
 ['2026','40 years & first oil','Four decades of nation-building — as commercial oil production begins.']];
 document.getElementById('tlLine').innerHTML=TL.map(t=>`<div class="tl-item"><div class="tl-yr">${t[0]}</div><div class="tl-node"></div><div class="tl-card"><h4>${t[1]}</h4><p>${t[2]}</p></div></div>`).join('');
+
+/* ---------- 04 · interactive road ---------- */
+(function(){
+  const road=document.getElementById('road'); if(!road) return;
+  const floor=document.getElementById('roadFloor'),
+        sky=road.querySelector('.road-sky-layer'),
+        day=document.getElementById('roadDaylight'),
+        odo=document.getElementById('roadKm'),
+        cue=document.getElementById('roadCue'),
+        beatsWrap=document.getElementById('roadBeats'),
+        progWrap=document.getElementById('roadProg');
+  /* NOTE: figures are provisional placeholders — verify each before publishing. */
+  const ROAD=[
+    {at:.06,tag:'1986 · The inheritance',big:'≈1,000 km',fact:'At the start, barely a thousand kilometres of the national roads were paved — most of the country turned to mud in every rainy season.'},
+    {at:.20,tag:'The network grew',big:'6,000+ km',fact:'The paved national network expanded many times over — the tarmac backbone that reconnected the districts.'},
+    {at:.34,tag:'Crossing the Nile',big:'525 m',fact:'The Source of the Nile Bridge at Jinja (2018) replaced the ageing colonial crossing and secured the main trade artery to the coast.'},
+    {at:.48,tag:'Districts connected',big:'135+',fact:'From 33 districts in 1986 to over 135 today — with tarmac now reaching nearly every district headquarters.'},
+    {at:.62,tag:'The Expressway',big:'51 km',fact:'The Kampala–Entebbe Expressway — the first tolled motorway — cut the airport run from up to two hours to about forty minutes.'},
+    {at:.76,tag:'Time, collapsed',big:'1 day → 5 hrs',fact:'Kampala to Gulu, once a full-day journey on broken road, is now a smooth five-hour drive on tarmac.'},
+    {at:.90,tag:'The road ahead',big:'20,000+ km',fact:'The national road network keeps growing — oil roads, regional links and the standard-gauge corridor are still under way.'}
+  ];
+  beatsWrap.innerHTML=ROAD.map((b,i)=>`<article class="road-beat" data-at="${b.at}"><span class="rb-tag">${b.tag}</span><b class="rb-big">${b.big}</b><p class="rb-fact">${b.fact}</p><span class="rb-mk">${String(i+1).padStart(2,'0')} / ${String(ROAD.length).padStart(2,'0')}</span></article>`).join('');
+  const beats=[...beatsWrap.children];
+  progWrap.innerHTML=ROAD.map(()=>'<i></i>').join('');
+  const dots=[...progWrap.children];
+  const KM=20800;
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){road.classList.add('rm');odo.textContent=KM.toLocaleString();beats.forEach(b=>{b.style.opacity=1;});dots.forEach(d=>d.classList.add('on'));return;}
+  function smoothstep(a,b,x){const t=Math.min(Math.max((x-a)/(b-a),0),1);return t*t*(3-2*t);}
+  let active=false,ticking=false,H=1;
+  function measure(){H=Math.max(road.offsetHeight-window.innerHeight,1);}
+  measure();window.addEventListener('resize',()=>{measure();schedule();},{passive:true});
+  function schedule(){if(!ticking){ticking=true;requestAnimationFrame(frame);}}
+  new IntersectionObserver(es=>es.forEach(e=>{active=e.isIntersecting;floor.style.willChange=active?'background-position':'auto';if(active)schedule();}),{rootMargin:'200px 0px'}).observe(road);
+  function frame(){
+    ticking=false;if(!active)return;
+    const p=Math.min(Math.max(-road.getBoundingClientRect().top/H,0),1);
+    const off=(p*4200).toFixed(1);
+    floor.style.backgroundPosition=`50% ${off}px,42% ${off}px,58% ${off}px,center`;
+    odo.textContent=Math.round(p*KM).toLocaleString();
+    if(sky)sky.style.transform=`translate3d(0,${(p*44).toFixed(1)}px,0)`;
+    if(day)day.style.opacity=(p*0.55).toFixed(3);
+    if(cue)cue.style.opacity=p>0.02?'0':'0.85';
+    let act=0;
+    beats.forEach((b,i)=>{const at=+b.dataset.at;
+      const lp=smoothstep(at-.08,at-.008,p)*(1-smoothstep(at+.085,at+.15,p));
+      b.style.opacity=lp.toFixed(3);
+      b.style.transform=`translate3d(0,${((1-lp)*46).toFixed(1)}px,0) scale(${(0.96+lp*0.04).toFixed(3)})`;
+      if(p>=at-0.09)act=i;});
+    dots.forEach((d,i)=>d.classList.toggle('on',i===act));
+  }
+  window.addEventListener('scroll',schedule,{passive:true});
+  requestAnimationFrame(frame);
+})();
 </script>
 </body>
 </html>
