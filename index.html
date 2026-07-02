@@ -4,6 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Forty Years of Transformation · Republic of Uganda · 1986–2026</title>
+<meta name="description" content="From a nation in ruins to a nation on the rise — four decades of peace, growth and rebuilding in the Republic of Uganda, told through the numbers, the milestones and the people. 1986–2026."/>
+<meta property="og:title" content="Forty Years of Transformation · Republic of Uganda"/>
+<meta property="og:description" content="From a nation in ruins to a nation on the rise — 1986–2026. The numbers, the milestones and the people."/>
+<meta property="og:type" content="website"/>
+<meta name="theme-color" content="#FFFFFF"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314110A'/%3E%3Cpath d='M32 10l6.4 14.9L54 26.7 43 37.4l2.7 16L32 45.3 18.3 53.4 21 37.4 10 26.7l15.6-1.8L32 10z' fill='%23C99A35'/%3E%3C/svg%3E"/>
 <!--
   IMAGE SLOTS: search for  class="fig"  and uncomment the <img> line, set src to your photo.
   The placeholder hides automatically and a unifying treatment is applied.
@@ -160,6 +166,9 @@ h1,h2,h3,h4,h5{font-family:var(--display);font-weight:600;line-height:1.05;lette
 .hm-figure::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.6;
   background:linear-gradient(108deg,rgba(255,240,200,.4),transparent 44%)}
 .hm-figure:has(img) .hm-ph,.hm-figure:has(img) .tag{display:none}
+.hm-figure .crane{height:82%;width:auto;max-width:80%;margin-bottom:5%;filter:drop-shadow(0 14px 22px rgba(40,28,8,.22))}
+.hm-figure.has-art .hm-ph,.hm-figure.has-art .tag{display:none}
+.hm-figure:has(img) .crane{display:none}
 /* To unify a real cutout into the palette, once assets/cut-president-hero.webp exists, enable a duotone/light-wrap layer:
    .hm-duo{position:absolute;inset:0;-webkit-mask:url(assets/cut-president-hero.webp) bottom center/contain no-repeat;
      mask:url(assets/cut-president-hero.webp) bottom center/contain no-repeat;background:var(--gold);mix-blend-mode:multiply;opacity:.18} */
@@ -474,6 +483,10 @@ body.night .rail .rn{color:var(--on-dark-2)}
 body.night #top{background:var(--gold-2);color:#14110A}
 
 /* ---- dusk gallery ---- */
+.plate{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fig:has(img) .plate{display:none}
+.gal .fig .plate{transition:transform .5s ease}
+.gal .fig:hover .plate{transform:scale(1.05)}
 .dusk .gcap{background:rgba(12,10,7,.72);color:var(--gold-3)}
 .gal .fig{transition:border-color .4s}
 .gal .fig img{filter:grayscale(.5) sepia(.08) brightness(.92) contrast(1.02);transition:filter .5s ease,transform .5s ease}
@@ -489,6 +502,10 @@ body.night #top{background:var(--gold-2);color:#14110A}
 .lb figcaption{margin-top:14px;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-3)}
 .lb-x{position:absolute;top:22px;right:26px;background:none;border:1px solid rgba(227,190,99,.4);border-radius:50%;width:44px;height:44px;color:var(--gold-3);font-size:20px;cursor:pointer;display:grid;place-items:center}
 .lb-x:hover{background:rgba(227,190,99,.14)}
+
+/* ---- stat sparklines ---- */
+.spark{position:absolute;top:24px;right:20px;width:56px;height:20px;opacity:.9}
+@media (prefers-reduced-motion:reduce){.spark path{stroke-dashoffset:0!important}}
 
 /* ---- timeline drag ---- */
 .tl-track{cursor:grab}
@@ -570,9 +587,30 @@ body.night #top{background:var(--gold-2);color:#14110A}
         </div>
         <div class="hm-floor"></div>
         <div class="hm-shadow"></div>
-        <figure class="hm-figure" id="heroFigure">
-          <!-- PRESIDENT CUTOUT: drop the transparent PNG/WebP here and it composites on the stage above.
+        <figure class="hm-figure has-art" id="heroFigure">
+          <!-- PRESIDENT CUTOUT: drop the transparent PNG/WebP here and it replaces the crane emblem.
                <img src="assets/cut-president-hero.webp" alt="President of the Republic of Uganda" width="1200" height="1600" decoding="async"> -->
+          <svg class="crane" viewBox="0 0 300 420" aria-label="Grey crowned crane, national bird of Uganda">
+            <g stroke="#241c10" stroke-width="5.5" stroke-linecap="round" fill="none">
+              <path d="M146 322 q2 40 0 84 M146 406 l14 6"/><path d="M172 320 q8 36 14 78 M186 398 l14 4"/>
+            </g>
+            <path d="M104 250 q0-40 36-52 q42-14 74 8 q26 18 18 48 q-8 32-48 40 q-54 10-80-44 z" fill="#241c10"/>
+            <path d="M218 224 q30 16 34 52 q2 26-16 44 q0-42-34-66 z" fill="#191307"/>
+            <path d="M226 236 l40 22 -34 6 z" fill="#241c10"/>
+            <path d="M126 226 q-26-30 -24-78 q1-27 -9-42" stroke="#241c10" stroke-width="12.5" fill="none" stroke-linecap="round"/>
+            <circle cx="91" cy="99" r="13.5" fill="#241c10"/>
+            <path d="M79 97 l-24 7 24 7 z" fill="#191307"/>
+            <ellipse cx="97" cy="104" rx="5.5" ry="6.5" fill="#EAE1CD" opacity=".92"/>
+            <path d="M94 113 q4 7 1 12" stroke="#CE1126" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+            <g stroke="#C99A35" stroke-width="2.2" stroke-linecap="round">
+              <path d="M94 86 l-7-25 M100 85 l1-27 M106 86 l9-25 M111 90 l16-21 M115 95 l22-14 M89 88 l-15-20"/>
+            </g>
+            <g fill="#E3BE63">
+              <circle cx="86" cy="59" r="3.2"/><circle cx="102" cy="56" r="3.2"/><circle cx="116" cy="59" r="3.2"/><circle cx="128" cy="67" r="3"/><circle cx="138" cy="79" r="2.8"/><circle cx="73" cy="66" r="3"/>
+            </g>
+            <path d="M148 232 q34-14 62 4 q16 11 10 30 q-26 14-56 2 q-20-9-16-36 z" fill="#C99A35" opacity=".9"/>
+            <path d="M156 238 q26-10 46 3 q10 7 6 19 q-20 9-42 0 q-14-7-10-22 z" fill="#EAE1CD" opacity=".5"/>
+          </svg>
           <div class="hm-ph">
             <span class="hm-ph-fig"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 100-10 5 5 0 000 10Zm0 2c-5 0-9 2.6-9 6v2h18v-2c0-3.4-4-6-9-6Z"/></svg></span>
             <span class="hm-ph-cap"><b>President portrait</b>Drop in a transparent cutout — it composites onto this dawn-and-skyline stage</span>
@@ -596,9 +634,22 @@ body.night #top{background:var(--gold-2);color:#14110A}
 <section class="band inherit" id="inheritance">
   <div class="wrap inherit-grid">
     <figure class="fig rv">
-      <!-- <img src="1986.jpg" alt="Uganda 1986"> -->
-      <div class="fig-ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="13" r="3" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        <span class="cap"><b>Archival · 1986</b>The swearing-in, or the nation at the dawn of the era</span><span class="tag">ADD IMAGE</span></div>
+      <!-- Drop a real archival photo here and the illustrated scene hides automatically:
+           <img src="assets/fig-1986.webp" alt="Uganda, 1986" loading="lazy" decoding="async"> -->
+      <svg class="plate" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="400" height="500" fill="#E9DFC8"/>
+        <rect width="400" height="240" fill="#D9CBAA" opacity=".55"/>
+        <circle cx="286" cy="112" r="34" fill="#CBBB92" opacity=".8"/>
+        <path fill="#8a7a56" opacity=".5" d="M0 250 Q120 216 240 244 Q330 262 400 240 V500 H0 Z"/>
+        <path fill="#4C4438" opacity=".85" d="M0 300 Q180 268 400 296 V500 H0 Z"/>
+        <path d="M60 500 Q150 400 240 356 L260 356 Q186 408 148 500 Z" fill="#2e2717" opacity=".8"/>
+        <g stroke="#EAE1CD" stroke-width="3" opacity=".5" stroke-linecap="round"><path d="M148 468 l14-22 M176 428 l12-18 M204 392 l10-14"/></g>
+        <g><rect x="306" y="238" width="5" height="86" fill="#2e2717"/>
+          <path d="M308 238 q-16-6 -14-24 q14 2 18 14 q4-12 18-14 q2 18-14 24 z" fill="#2e2717" opacity=".9"/>
+          <circle cx="308.5" cy="252" r="7" fill="#C99A35" opacity=".95"/>
+          <circle cx="308.5" cy="252" r="14" fill="#C99A35" opacity=".25"/></g>
+        <rect width="400" height="500" fill="#1C1812" opacity=".08"/>
+      </svg>
     </figure>
     <div class="rv d1">
       <div class="kicker red" style="margin-bottom:22px">01 · Where it began</div>
@@ -625,7 +676,7 @@ body.night #top{background:var(--gold-2);color:#14110A}
       <div class="stat rv" data-to="986"><div class="lab">GDP per capita today</div><div class="num"><span class="pre">$</span><span class="cv">0</span></div><div class="desc">up from <b>$330</b> in 1986 · ~3× in real terms</div></div>
       <div class="stat rv d1" data-to="2048"><div class="lab">Electricity generated</div><div class="num"><span class="cv">0</span><span class="suf"> MW</span></div><div class="desc">up from <b>60 MW</b> on one ageing dam</div></div>
       <div class="stat rv d2" data-to="51"><div class="lab">Now have electricity</div><div class="num"><span class="cv">0</span><span class="suf">%</span></div><div class="desc">up from <b>12–15%</b> two decades ago</div></div>
-      <div class="stat rv d3 warn" data-to="16"><div class="lab">National poverty rate</div><div class="num"><span class="cv">0</span><span class="suf">%</span></div><div class="desc">down from <b>56%</b> in 1992</div></div>
+      <div class="stat rv d3 warn" data-to="16" data-dir="down"><div class="lab">National poverty rate</div><div class="num"><span class="cv">0</span><span class="suf">%</span></div><div class="desc">down from <b>56%</b> in 1992</div></div>
       <div class="stat rv" data-to="5000"><div class="lab">Factories operating</div><div class="num"><span class="pre">~</span><span class="cv">0</span></div><div class="desc">up from <b>80</b> in 1986</div></div>
       <div class="stat rv d1" data-to="70"><div class="lab">Adult literacy</div><div class="num"><span class="cv">0</span><span class="suf">%+</span></div><div class="desc">up from <b>43%</b> in 1986</div></div>
       <div class="stat rv d2" data-to="1.8" data-dec="1"><div class="lab">Refugees given haven</div><div class="num"><span class="cv">0</span><span class="suf">M</span></div><div class="desc">Africa’s <b>largest</b> host nation</div></div>
@@ -794,12 +845,68 @@ body.night #top{background:var(--gold-2);color:#14110A}
       <p>A visual record of the journey — each frame ready for your archive photography.</p>
     </div>
     <div class="gal rv">
-      <figure class="fig wide tall"><div class="fig-ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="13" r="3" stroke="currentColor" stroke-width="1.2"/></svg></span><span class="cap"><b>Feature image</b></span></div><span class="gcap">1986 · The new dawn</span></figure>
-      <figure class="fig"><div class="fig-ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="13" r="3" stroke="currentColor" stroke-width="1.2"/></svg></span></div><span class="gcap">Karuma Dam</span></figure>
-      <figure class="fig"><div class="fig-ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="13" r="3" stroke="currentColor" stroke-width="1.2"/></svg></span></div><span class="gcap">Universal Primary Education</span></figure>
-      <figure class="fig"><div class="fig-ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="13" r="3" stroke="currentColor" stroke-width="1.2"/></svg></span></div><span class="gcap">Entebbe Expressway</span></figure>
-      <figure class="fig"><div class="fig-ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="13" r="3" stroke="currentColor" stroke-width="1.2"/></svg></span></div><span class="gcap">Coffee & value addition</span></figure>
-      <figure class="fig wide"><div class="fig-ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="13" r="3" stroke="currentColor" stroke-width="1.2"/></svg></span></div><span class="gcap">Health for all</span></figure>
+      <figure class="fig wide tall">
+        <svg class="plate" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <circle cx="200" cy="252" r="120" fill="#C99A35" opacity=".14"/>
+          <circle cx="200" cy="252" r="62" fill="#E3BE63" opacity=".9"/>
+          <g stroke="#C99A35" stroke-width="2.5" opacity=".55" stroke-linecap="round">
+            <path d="M200 132 v-30M118 166 l-22-22M282 166 l22-22M92 252 h-32M308 252 h32"/>
+          </g>
+          <path fill="#2a2113" d="M0 282 Q120 240 240 272 Q330 294 400 268 V400 H0 Z"/>
+          <path fill="#191307" d="M0 322 Q160 288 400 316 V400 H0 Z"/>
+          <g><rect x="298" y="176" width="4" height="130" fill="#191307"/><path d="M302 178 h56 v14 h-56 z" fill="#C99A35" opacity=".85"/></g>
+        </svg>
+        <span class="gcap">1986 · The new dawn</span></figure>
+      <figure class="fig">
+        <svg class="plate" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M40 120 Q200 90 360 120 L360 176 Q200 148 40 176 Z" fill="#C99A35" opacity=".8"/>
+          <g fill="#15110b"><rect x="82" y="126" width="14" height="40" rx="2"/><rect x="136" y="122" width="14" height="42" rx="2"/><rect x="190" y="119" width="14" height="44" rx="2"/><rect x="244" y="122" width="14" height="42" rx="2"/><rect x="298" y="126" width="14" height="40" rx="2"/></g>
+          <g stroke="#E3BE63" stroke-width="2" opacity=".7"><path d="M60 216 q30 8 60 0 t60 0 t60 0 t60 0 t60 0"/><path d="M60 238 q30 8 60 0 t60 0 t60 0 t60 0 t60 0" opacity=".5"/></g>
+          <path d="M330 118 l7-34 l7 34 M332 100 h10 M334 90 h6" stroke="#C99A35" stroke-width="2" fill="none"/>
+        </svg>
+        <span class="gcap">Karuma Dam</span></figure>
+      <figure class="fig">
+        <svg class="plate" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M110 150 L200 96 L290 150 Z" fill="#C99A35" opacity=".85"/>
+          <rect x="128" y="150" width="144" height="76" fill="#8a6a38" opacity=".6"/>
+          <rect x="188" y="180" width="24" height="46" fill="#15110b"/>
+          <g fill="#15110b"><rect x="142" y="164" width="20" height="20"/><rect x="238" y="164" width="20" height="20"/></g>
+          <g fill="#E3BE63" opacity=".9">
+            <circle cx="86" cy="244" r="9"/><path d="M74 256 h24 l-4 30 h-16 z"/>
+            <circle cx="320" cy="240" r="10"/><path d="M306 254 h28 l-5 32 h-18 z"/>
+            <rect x="330" y="262" width="14" height="10" rx="1" fill="#C99A35"/>
+          </g>
+          <path d="M200 96 v-26 M200 72 h26 v12 h-26" stroke="#E3BE63" stroke-width="2.4" fill="none"/>
+        </svg>
+        <span class="gcap">Universal Primary Education</span></figure>
+      <figure class="fig">
+        <svg class="plate" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M150 300 Q186 170 240 96 L268 96 Q214 176 196 300 Z" fill="#6B4E27" opacity=".75"/>
+          <g fill="#E3BE63"><rect x="196" y="262" width="7" height="22" rx="2"/><rect x="212" y="206" width="6" height="18" rx="2"/><rect x="226" y="158" width="5" height="15" rx="2"/><rect x="238" y="122" width="4" height="12" rx="2"/></g>
+          <path d="M120 138 h160 M132 138 v-20 M268 138 v-20" stroke="#C99A35" stroke-width="4" fill="none" opacity=".9"/>
+          <rect x="176" y="118" width="48" height="14" rx="2" fill="#C99A35" opacity=".7"/>
+        </svg>
+        <span class="gcap">Entebbe Expressway</span></figure>
+      <figure class="fig">
+        <svg class="plate" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M70 250 Q160 160 320 84" stroke="#8a6a38" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <g fill="#C99A35" opacity=".85">
+            <ellipse cx="176" cy="170" rx="34" ry="13" transform="rotate(-32 176 170)"/>
+            <ellipse cx="252" cy="122" rx="30" ry="11" transform="rotate(-30 252 122)"/>
+          </g>
+          <g fill="#E3BE63"><circle cx="128" cy="212" r="12"/><circle cx="152" cy="228" r="12"/><circle cx="132" cy="240" r="12"/><circle cx="158" cy="204" r="10"/><circle cx="292" cy="98" r="9"/><circle cx="308" cy="112" r="9"/></g>
+          <g stroke="#15110b" stroke-width="1.6" opacity=".6"><path d="M128 204 v16 M152 220 v16 M132 232 v16"/></g>
+        </svg>
+        <span class="gcap">Coffee &amp; value addition</span></figure>
+      <figure class="fig wide">
+        <svg class="plate" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect x="60" y="78" width="130" height="80" fill="#8a6a38" opacity=".55"/>
+          <path d="M52 78 L125 44 L198 78 Z" fill="#C99A35" opacity=".85"/>
+          <g fill="#E3BE63"><rect x="115" y="52" width="20" height="7"/><rect x="121.5" y="45.5" width="7" height="20"/></g>
+          <g fill="#15110b"><rect x="78" y="96" width="22" height="24"/><rect x="150" y="96" width="22" height="24"/><rect x="112" y="110" width="26" height="48"/></g>
+          <path d="M220 118 h34 l10-26 12 52 12-40 8 14 h44" stroke="#E3BE63" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="gcap">Health for all</span></figure>
     </div>
   </div>
 </section>
@@ -814,15 +921,44 @@ body.night #top{background:var(--gold-2);color:#14110A}
     </div>
     <div class="vis-grid">
       <div class="vis-card rv">
-        <figure class="fig"><div class="fig-ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M5 8c0-3 3-5 7-5s7 2 7 5-3 5-7 5-7 2-7 5 3 5 7 5" stroke="currentColor" stroke-width="1.3"/></svg></span><span class="cap"><b>Oil / EACOP</b></span></div></figure>
+        <figure class="fig">
+          <svg class="plate" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <path d="M150 210 L190 70 L206 70 L246 210 Z" fill="none" stroke="#C99A35" stroke-width="4"/>
+            <path d="M162 172 h74 M172 134 h54 M182 98 h34" stroke="#C99A35" stroke-width="3"/>
+            <path d="M198 70 v-18 M186 52 h24" stroke="#E3BE63" stroke-width="3"/>
+            <path d="M246 210 h94 q22 0 22 22 v18" stroke="#8a6a38" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <circle cx="198" cy="228" r="5" fill="#E3BE63"/><path d="M60 228 h280" stroke="#3a2c15" stroke-width="3"/>
+          </svg>
+        </figure>
         <div class="vc-body"><h4>First oil</h4><p>With commercial reserves confirmed at Lake Albert, production is set to begin in 2026 via a pipeline to the coast.</p><div class="vstat">≈ 230,000 barrels/day at peak</div></div>
       </div>
       <div class="vis-card rv d1">
-        <figure class="fig"><div class="fig-ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M6 21V11l6-5 6 5v10" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><span class="cap"><b>Industry</b></span></div></figure>
+        <figure class="fig">
+          <svg class="plate" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <path d="M80 210 V120 l50 34 V120 l50 34 V120 l50 34 v56 Z" fill="#C99A35" opacity=".8"/>
+            <rect x="250" y="96" width="18" height="114" fill="#8a6a38"/>
+            <rect x="284" y="120" width="14" height="90" fill="#6B4E27"/>
+            <g stroke="#E3BE63" stroke-width="2.4" opacity=".8" fill="none">
+              <path d="M259 92 q-6-14 4-22 q10-8 6-20"/><path d="M291 116 q-5-11 3-18"/>
+            </g>
+            <path d="M60 210 h290" stroke="#3a2c15" stroke-width="3"/>
+            <g fill="#15110b"><rect x="96" y="168" width="16" height="18"/><rect x="130" y="168" width="16" height="18"/><rect x="164" y="168" width="16" height="18"/></g>
+          </svg>
+        </figure>
         <div class="vc-body"><h4>An industrial economy</h4><p>From under 100 factories to thousands — steel, minerals and manufacturing now exporting across the region.</p><div class="vstat">Targeting a tenfold economy</div></div>
       </div>
       <div class="vis-card rv d2">
-        <figure class="fig"><div class="fig-ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.3"/><path d="M2 12h20M12 3a14 14 0 010 18M12 3a14 14 0 000 18" stroke="currentColor" stroke-width="1.2"/></svg></span><span class="cap"><b>Region</b></span></div></figure>
+        <figure class="fig">
+          <svg class="plate" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <g stroke="#8a6a38" stroke-width="2" opacity=".8">
+              <path d="M200 128 L118 84 M200 128 L294 78 M200 128 L112 182 M200 128 L286 190 M200 128 L200 40"/>
+            </g>
+            <g fill="#6B4E27"><circle cx="118" cy="84" r="9"/><circle cx="294" cy="78" r="9"/><circle cx="112" cy="182" r="9"/><circle cx="286" cy="190" r="9"/><circle cx="200" cy="40" r="7"/></g>
+            <circle cx="200" cy="128" r="17" fill="#E3BE63"/>
+            <circle cx="200" cy="128" r="30" fill="none" stroke="#E3BE63" stroke-width="2" opacity=".45"/>
+            <circle cx="200" cy="128" r="46" fill="none" stroke="#C99A35" stroke-width="1.4" opacity=".25"/>
+          </svg>
+        </figure>
         <div class="vc-body"><h4>A regional power</h4><p>A surplus of clean hydropower, a growing trade hub and a stabilising force across East Africa.</p><div class="vstat">Vision 2040</div></div>
       </div>
     </div>
@@ -875,6 +1011,16 @@ function closeMenu(){document.getElementById('menu').classList.remove('open')}
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.classList.contains('stat'))animateStat(e.target);io.unobserve(e.target);}})},{threshold:.16,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv,.stat').forEach(el=>io.observe(el));
 function animateStat(el){if(el.dataset.done)return;el.dataset.done=1;
+  /* sparkline drawn in sync with the count-up */
+  if(!el.querySelector('.spark')){
+    const down=el.dataset.dir==='down';
+    const d=down?'M2 4 C 16 5, 32 10, 54 17':'M2 17 C 18 15, 34 9, 54 3';
+    const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    s.setAttribute('class','spark');s.setAttribute('viewBox','0 0 56 20');s.setAttribute('aria-hidden','true');
+    s.innerHTML='<path d="'+d+'" fill="none" stroke="'+(down?'#B22A26':'#C99A35')+'" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="60" stroke-dashoffset="60"/>';
+    el.appendChild(s);
+    requestAnimationFrame(()=>{const p=s.querySelector('path');p.style.transition='stroke-dashoffset 1.4s ease';p.style.strokeDashoffset='0';});
+  }
   const to=parseFloat(el.dataset.to),dec=parseInt(el.dataset.dec||'0'),cv=el.querySelector('.cv'),dur=1500,t0=performance.now();
   function tick(now){const p=Math.min((now-t0)/dur,1),e=1-Math.pow(1-p,3);let v=to*e;
     cv.textContent=dec>0?v.toFixed(dec):Math.round(v).toLocaleString();
@@ -940,8 +1086,8 @@ const SECTORS=[
  {k:'infra',n:'06',t:'Infrastructure',tag:'Roads, bridges and wings',
   paras:['The Kampala–Entebbe Expressway, new bridges across the Nile, thousands of kilometres of tarmac and the revival of Uganda Airlines have reconnected the country and its neighbours.','Modern infrastructure turned isolated districts into part of a national and regional economy.'],
   tags:['Entebbe Expressway','New Nile bridges','Uganda Airlines revived'],
-  stats:[['51 km','Entebbe Expressway'],['Revived','national airline']],
-  vis:{type:'image',cap:'Photograph · the Entebbe Expressway, a new bridge or Uganda Airlines'}},
+  stats:[['6,850 km','tarmac, from ~1,000'],['51 km','Entebbe Expressway'],['Revived','national airline']],
+  vis:{type:'bars',data:[{yr:'1986',v:1000,disp:'~1,000',dim:1},{yr:'2008',v:3612,disp:'~3,600'},{yr:'2025',v:6850,disp:'6,850'}],max:6850,cap:'Kilometres of paved national road — nearly a <b>7× rise</b>, on a 21,000 km national network.'}},
  {k:'industry',n:'07',t:'Agriculture & Industry',tag:'A productive nation',
   paras:['Factories grew from around 80 in 1986 to thousands today, with value addition in coffee, dairy and grain turning raw produce into export earnings.','Coffee — the country’s signature crop — remains one of Africa’s largest exports, now increasingly processed at home.'],
   tags:['Value addition','Coffee & dairy','Manufacturing growth'],
@@ -1022,21 +1168,23 @@ document.getElementById('tlLine').innerHTML=TL.map(t=>`<div class="tl-item"><div
         cue=document.getElementById('roadCue'),
         beatsWrap=document.getElementById('roadBeats'),
         progWrap=document.getElementById('roadProg');
-  /* NOTE: figures are provisional placeholders — verify each before publishing. */
+  /* Figures verified Jul 2026 — Ministry of Works & Transport (1,000km→6,850km paved of 21,000km
+     national network), Electoral Commission (146 districts & cities), Wikipedia/KEE (Expressway
+     51km, Jun 2018, >90min→~40min), Source of the Nile Bridge 525m (Oct 2018). */
   const ROAD=[
     {at:.06,tag:'1986 · The inheritance',big:'≈1,000 km',fact:'At the start, barely a thousand kilometres of the national roads were paved — most of the country turned to mud in every rainy season.'},
-    {at:.20,tag:'The network grew',big:'6,000+ km',fact:'The paved national network expanded many times over — the tarmac backbone that reconnected the districts.'},
+    {at:.20,tag:'The network grew',big:'6,850 km',fact:'The paved national network grew from about 1,000 km to 6,850 km of tarmac — the backbone that reconnected the districts.'},
     {at:.34,tag:'Crossing the Nile',big:'525 m',fact:'The Source of the Nile Bridge at Jinja (2018) replaced the ageing colonial crossing and secured the main trade artery to the coast.'},
-    {at:.48,tag:'Districts connected',big:'135+',fact:'From 33 districts in 1986 to over 135 today — with tarmac now reaching nearly every district headquarters.'},
-    {at:.62,tag:'The Expressway',big:'51 km',fact:'The Kampala–Entebbe Expressway — the first tolled motorway — cut the airport run from up to two hours to about forty minutes.'},
+    {at:.48,tag:'Districts connected',big:'33 → 146',fact:'From 33 districts in 1986 to 146 districts and cities today — with tarmac now reaching nearly every district headquarters.'},
+    {at:.62,tag:'The Expressway',big:'51 km',fact:'The Kampala–Entebbe Expressway — the first tolled motorway (2018) — cut the airport run from over ninety minutes to about forty.'},
     {at:.76,tag:'Time, collapsed',big:'1 day → 5 hrs',fact:'Kampala to Gulu, once a full-day journey on broken road, is now a smooth five-hour drive on tarmac.'},
-    {at:.90,tag:'The road ahead',big:'20,000+ km',fact:'The national road network keeps growing — oil roads, regional links and the standard-gauge corridor are still under way.'}
+    {at:.90,tag:'The road ahead',big:'21,000 km',fact:'A 21,000 km national network — 6,850 km paved and rising, with oil roads, regional links and the standard-gauge corridor under way.'}
   ];
   beatsWrap.innerHTML=ROAD.map((b,i)=>`<article class="road-beat" data-at="${b.at}"><span class="rb-tag">${b.tag}</span><b class="rb-big">${b.big}</b><p class="rb-fact">${b.fact}</p><span class="rb-mk">${String(i+1).padStart(2,'0')} / ${String(ROAD.length).padStart(2,'0')}</span></article>`).join('');
   const beats=[...beatsWrap.children];
   progWrap.innerHTML=ROAD.map(()=>'<i></i>').join('');
   const dots=[...progWrap.children];
-  const KM=20800;
+  const KM=21000;
   if(matchMedia('(prefers-reduced-motion:reduce)').matches){road.classList.add('rm');odo.textContent=KM.toLocaleString();beats.forEach(b=>{b.style.opacity=1;});dots.forEach(d=>d.classList.add('on'));return;}
   function smoothstep(a,b,x){const t=Math.min(Math.max((x-a)/(b-a),0),1);return t*t*(3-2*t);}
   let active=false,ticking=false,H=1;
