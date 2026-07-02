@@ -10,6 +10,7 @@
 <meta property="og:type" content="website"/>
 <meta name="theme-color" content="#FFFFFF"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314110A'/%3E%3Cpath d='M32 10l6.4 14.9L54 26.7 43 37.4l2.7 16L32 45.3 18.3 53.4 21 37.4 10 26.7l15.6-1.8L32 10z' fill='%23C99A35'/%3E%3C/svg%3E"/>
+<link rel="preload" as="image" href="assets/cut-president-hero.webp" type="image/webp"/>
 <!--
   IMAGE SLOTS: search for  class="fig"  and uncomment the <img> line, set src to your photo.
   The placeholder hides automatically and a unifying treatment is applied.
@@ -437,7 +438,13 @@ footer{background:var(--dark);color:var(--on-dark);padding:66px var(--gutter) 42
 body{background:#FFFFFF}
 #pre{background:#FFFFFF}
 .hero{background:linear-gradient(180deg,#FFFFFF 0%,#FDFBF6 100%)}
-#inheritance{background:linear-gradient(180deg,#FDFBF6 0%,#FAF6EC 100%)}
+#inheritance{background:#FAF6EC;position:relative;overflow:hidden}
+#inheritance::before{content:"";position:absolute;inset:0;
+  background:url("assets/bg-inheritance.webp") center 24%/cover no-repeat;
+  filter:saturate(.3) sepia(.3) contrast(.95) brightness(1.09)}
+#inheritance::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,#FDFBF6 0%,rgba(253,251,246,.96) 12%,rgba(252,249,240,.84) 32%,rgba(250,246,236,.7) 55%,rgba(250,246,236,.86) 78%,#FAF6EC 100%)}
+#inheritance>.wrap{position:relative;z-index:1}
 #numbers{background:linear-gradient(180deg,#FAF6EC 0%,#F6F0E0 100%)}
 #journey{background:linear-gradient(180deg,#F6F0E0 0%,#EFE7D3 100%)}
 #achievements{background:linear-gradient(180deg,#F6E2A6 0%,#F3EBD8 14%,#F3EBD8 100%)}
@@ -632,8 +639,7 @@ body.ready .hero .hero-actions{animation:hmRise .6s .44s cubic-bezier(.2,.8,.2,1
         <div class="hm-floor"></div>
         <div class="hm-shadow"></div>
         <figure class="hm-figure has-art" id="heroFigure">
-          <!-- PRESIDENT CUTOUT: drop the transparent PNG/WebP here and it replaces the crane emblem.
-               <img src="assets/cut-president-hero.webp" alt="President of the Republic of Uganda" width="1200" height="1600" decoding="async"> -->
+          <img src="assets/cut-president-hero.webp" alt="The President of the Republic of Uganda" width="697" height="794" fetchpriority="high" decoding="async">
           <svg class="crane" viewBox="0 0 300 420" aria-label="Grey crowned crane, national bird of Uganda">
             <g stroke="#241c10" stroke-width="5.5" stroke-linecap="round" fill="none">
               <path d="M146 322 q2 40 0 84 M146 406 l14 6"/><path d="M172 320 q8 36 14 78 M186 398 l14 4"/>
@@ -1343,7 +1349,7 @@ document.getElementById('tlLine').innerHTML=TL.map(t=>`<div class="tl-item"><div
 (function(){
   const st=document.querySelector('.hm-stage'); if(!st) return;
   if(!matchMedia('(pointer:fine)').matches||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  const host=st.parentElement,inner=st.querySelector('.hm-figure svg, .hm-figure img');
+  const host=st.parentElement,inner=st.querySelector('.hm-figure img')||st.querySelector('.hm-figure svg');
   let tx=0,ty=0,cx=0,cy=0,run=false;
   function loop(){cx+=(tx-cx)*.09;cy+=(ty-cy)*.09;
     st.style.transform=`rotateX(${(-cy*2.2).toFixed(2)}deg) rotateY(${(cx*2.2).toFixed(2)}deg)`;
