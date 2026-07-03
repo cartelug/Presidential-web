@@ -485,6 +485,129 @@ h1,h2,h3{font-weight:600;letter-spacing:-.005em}
 .hero-stats .hs b{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,2.6vw,2.2rem);color:var(--gold-hi);display:block;line-height:1}
 .hero-stats .hs .lbl{display:block;margin-top:7px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-2)}
 body.ready .hero-stats{animation:riseIn .8s var(--ease-cinematic) both;animation-delay:.5s}
+
+/* ============ PLAN V5 · GOLDEN EDITION HERO (mockup replication) ============ */
+/* -- numbered chapter nav (all scenes) -- */
+.top-nav{gap:clamp(14px,1.8vw,26px)}
+.top-nav a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 2px;text-align:center;position:relative}
+.top-nav a .no{font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.04em;color:var(--gold);line-height:1}
+.top-nav a .lb{font-family:var(--sans);font-weight:500;font-size:7.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ivory-3);line-height:1.35}
+.top-nav a::after{content:"";position:absolute;left:50%;transform:translateX(-50%);top:-1px;width:0;height:2px;background:var(--gold);transition:width .3s var(--ease-out)}
+.top-nav a.active::after{width:22px}
+.top-nav a.active .no,.top-nav a:hover .no{color:var(--gold-hi)}
+@media(max-width:1279px){.top-nav a .lb{display:none}}
+
+/* -- menu button + overlay -- */
+.menu-btn{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;cursor:pointer;padding:0}
+.mb-disc{width:42px;height:42px;border-radius:50%;background:#1d1712;border:1px solid rgba(201,162,74,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.mb-disc i{width:16px;height:1.6px;background:#e9dfc4;display:block;border-radius:1px}
+.mb-lb{font-family:var(--sans);font-weight:600;font-size:8px;letter-spacing:.24em;text-transform:uppercase;color:var(--ivory-3)}
+.menu-btn:focus-visible .mb-disc{outline:2px solid var(--gold-hi);outline-offset:3px}
+.menu-overlay{position:fixed;inset:0;z-index:400;background:rgba(8,6,4,.97);display:grid;place-items:center}
+.menu-overlay[hidden]{display:none}
+.menu-overlay nav{display:flex;flex-direction:column;gap:4px}
+.menu-overlay a{font-family:var(--serif);font-weight:600;font-size:clamp(21px,3.2vw,32px);color:var(--ivory);text-decoration:none;display:flex;align-items:baseline;gap:18px;padding:6px 10px}
+.menu-overlay a b{font-family:var(--sans);font-weight:600;font-size:12px;color:var(--gold);width:26px}
+.menu-overlay a:hover,.menu-overlay a:focus-visible{color:var(--gold-hi)}
+
+/* -- header goes light while the hero scene is active -- */
+body[data-scene="hero"] .site-header{background:linear-gradient(rgba(252,248,238,.96),rgba(252,248,238,.82));border-bottom:1px solid rgba(70,52,22,.1);backdrop-filter:blur(8px)}
+body[data-scene="hero"] .lockup .lk-t{color:#241a10}
+body[data-scene="hero"] .lockup .lk-t b{color:#241a10}
+body[data-scene="hero"] .top-nav a .no{color:#a07724}
+body[data-scene="hero"] .top-nav a .lb{color:#7d6b49}
+body[data-scene="hero"] .top-nav a.active .no,body[data-scene="hero"] .top-nav a:hover .no{color:#7c5a1c}
+body[data-scene="hero"] .mb-lb{color:#5c4c30}
+body[data-scene="hero"] .rail{opacity:0;pointer-events:none}
+.rail{transition:opacity .5s var(--ease-out)}
+
+/* -- hero canvas: warm golden-hour field -- */
+.chapter--hero{display:flex;flex-direction:column;padding:0;min-height:100svh;color:#241a10;overflow:hidden;position:relative;
+  background:
+    radial-gradient(85% 95% at 74% 42%,rgba(235,182,96,.55),transparent 62%),
+    radial-gradient(60% 60% at 90% 90%,rgba(160,110,45,.3),transparent 70%),
+    linear-gradient(180deg,#fcf8ee 0%,#f8f0dc 55%,#f1e3c4 100%)}
+.hx-art{position:absolute;top:clamp(44px,6vh,72px);right:max(1vw,12px);bottom:132px;width:min(57%,900px);z-index:1;pointer-events:none}
+.hx-map{position:absolute;inset:0;width:100%;height:100%}
+.hx-president{position:absolute;bottom:-1%;left:50%;transform:translateX(-40%);height:92%;width:auto;max-width:none;filter:drop-shadow(0 26px 44px rgba(84,54,12,.38))}
+.hx-grid{position:relative;z-index:2;max-width:var(--max);margin:0 auto;width:100%;padding:clamp(100px,13vh,144px) var(--pad) 0}
+.hx-copy{max-width:600px}
+.hx-eyebrow{font-family:var(--sans);font-weight:600;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:#a97e2b;margin:0 0 20px}
+.chapter--hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.9rem,5.8vw,5.2rem);line-height:.99;letter-spacing:-.012em;color:#241a10;margin:0 0 24px;max-width:12ch}
+.hx-republic{display:flex;align-items:center;gap:14px;font-family:var(--sans);font-weight:600;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:#3d3120;margin:0 0 30px}
+.hx-republic i{font-style:normal;color:#a97e2b}
+.hx-rule{width:46px;height:2px;background:#c9a24a;flex:none}
+.hx-sub{font-family:var(--sans);font-weight:700;font-size:clamp(16px,1.55vw,20px);letter-spacing:.05em;text-transform:uppercase;line-height:1.5;color:#241a10;margin:0 0 18px}
+.hx-lead{font-family:var(--text);font-size:clamp(15.5px,1.25vw,17.5px);line-height:1.75;color:#5b4b2e;max-width:44ch;margin:0 0 34px}
+.hx-ctas{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.hx-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(180deg,#d3ab52,#bd923a);color:#241a05;font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:16px 26px;border-radius:3px;box-shadow:0 10px 24px rgba(150,105,30,.35);transition:transform .3s var(--ease-out),box-shadow .3s}
+.hx-btn:hover{box-shadow:0 14px 30px rgba(150,105,30,.45)}
+.hx-btn svg{width:16px;height:16px}
+.hx-watch{display:inline-flex;align-items:center;gap:12px;font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#241a10;text-decoration:none}
+.hx-play{width:34px;height:34px;border-radius:50%;border:1.5px solid #241a10;display:grid;place-items:center;transition:background .3s,color .3s}
+.hx-play svg{width:14px;height:14px}
+.hx-watch:hover .hx-play{background:#241a10;color:#f3d9a0}
+.hx-scroll{position:relative;z-index:2;display:flex;flex-direction:column;gap:8px;margin:auto 0 18px;padding:clamp(28px,4vh,48px) var(--pad) 0;max-width:var(--max);margin-inline:auto;width:100%}
+.hx-scroll span{font-family:var(--sans);font-weight:600;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:#8a7449}
+.hx-scroll i{width:1.5px;height:26px;background:#a97e2b;display:block;animation:hxTick 2.2s var(--ease-cinematic) infinite}
+@keyframes hxTick{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* -- national record strip -- */
+.hx-stats{position:relative;z-index:2;display:grid;grid-template-columns:repeat(5,1fr);background:#201a12;border-radius:14px 14px 0 0;width:min(1500px,calc(100% - clamp(24px,4vw,56px)));margin:0 auto}
+.hx-stat{padding:clamp(18px,2vw,28px) clamp(16px,1.8vw,28px);border-left:1px solid rgba(201,162,74,.16);display:flex;flex-direction:column;gap:8px}
+.hx-stat:first-child{border-left:none}
+.hx-ic{width:20px;height:20px;color:#d9ae5c}
+.hx-ic svg{width:100%;height:100%}
+.hx-k{font-family:var(--sans);font-weight:600;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#b6a681}
+.hx-v{font-family:var(--serif);font-weight:600;font-size:clamp(1.35rem,1.8vw,1.8rem);color:#f3ecdc;line-height:1;font-variant-numeric:lining-nums tabular-nums;white-space:nowrap}
+.hx-v i{font-style:normal;color:#c9a24a;font-size:.72em;margin:0 2px}
+.hx-v em{font-style:normal;font-size:.58em;letter-spacing:.06em;color:#cfc0a0}
+.hx-y{display:flex;gap:34px;font-family:var(--sans);font-weight:500;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#8a7c60}
+.hx-stats .fn{font-size:8px;margin-left:3px}
+
+/* -- hero entrance choreography -- */
+body.ready .hx-copy>*{animation:riseIn .8s var(--ease-cinematic) both}
+body.ready .hx-eyebrow{animation-delay:.05s}
+body.ready .chapter--hero h1{animation-delay:.14s}
+body.ready .hx-republic{animation-delay:.24s}
+body.ready .hx-sub{animation-delay:.32s}
+body.ready .hx-lead{animation-delay:.4s}
+body.ready .hx-ctas{animation-delay:.48s}
+body.ready .hx-art{animation:portraitSettle 1.2s var(--ease-cinematic) both .2s}
+body.ready .hx-stats{animation:riseIn .9s var(--ease-cinematic) both .55s}
+
+/* -- tablet -- */
+@media(max-width:1100px){
+  .hx-stats{grid-template-columns:repeat(3,1fr)}
+  .hx-stat{border-top:1px solid rgba(201,162,74,.16)}
+  .hx-stat:nth-child(-n+3){border-top:none}
+  .hx-stat:nth-child(4){border-left:none}
+  .hx-art{width:62%;bottom:220px;opacity:.92}
+}
+/* -- mobile: stacked edition, portrait behind copy, stats as dark card -- */
+@media(max-width:768px){
+  .chapter--hero{display:flex;min-height:100svh;padding:0}
+  .hx-grid{padding-top:100px}
+  .hx-art{top:150px;right:-34%;left:auto;bottom:auto;width:110%;height:min(56vh,500px);opacity:.9}
+  .hx-president{height:76%;left:60%;transform:translateX(-50%)}
+  .hx-copy{max-width:30rem;position:relative}
+  .hx-copy::before{content:"";position:absolute;inset:-20px -12px -20px -24px;z-index:-1;
+    background:linear-gradient(90deg,rgba(252,248,238,.92) 55%,rgba(252,248,238,.25));border-radius:12px}
+  .chapter--hero h1{font-size:clamp(2.45rem,11vw,3.4rem);max-width:11ch}
+  .hx-republic{font-size:10.5px;letter-spacing:.16em;gap:10px;white-space:nowrap}
+  .hx-rule{width:30px}
+  .hx-sub{font-size:14.5px}
+  .hx-lead{font-size:15px;max-width:36ch}
+  .hx-ctas{gap:16px}
+  .hx-btn{padding:15px 22px}
+  .hx-stats{display:block;order:3;border-radius:16px;width:calc(100% - 40px);margin:38px auto 0;box-shadow:0 20px 40px rgba(70,45,10,.25)}
+  .hx-stat{display:grid;grid-template-columns:26px 1fr;grid-template-rows:auto auto auto;column-gap:14px;row-gap:5px;border-left:none!important;border-top:1px solid rgba(201,162,74,.16);padding:18px 20px}
+  .hx-stat:first-child{border-top:none}
+  .hx-ic{grid-row:1/4;align-self:center}
+  .hx-k,.hx-v,.hx-y{grid-column:2}
+  .hx-y{gap:22px}
+  .hx-scroll{order:4;align-items:center;margin:26px 0 24px;padding-top:0}
+}
 </style>
 </head>
 <body data-scene="hero">
@@ -528,17 +651,41 @@ body.ready .hero-stats{animation:riseIn .8s var(--ease-cinematic) both;animation
 <header class="site-header" id="siteHeader">
   <a class="lockup" href="#main">
     <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="27" fill="none" stroke="#C9A24A" stroke-width="2"/><text x="32" y="39" font-family="Georgia,serif" font-size="19" fill="#E3C46A" text-anchor="middle">40</text></svg>
-    <span class="lk-t">Republic of Uganda<b>Forty Years of Transformation</b></span>
+    <span class="lk-t">Republic of Uganda<b>State House</b></span>
   </a>
   <nav class="top-nav" aria-label="Chapters">
-    <a href="#ledger">The Ledger</a>
-    <a href="#journey">The Journey</a>
-    <a href="#regions">The Regions</a>
-    <a href="#voices">Voices</a>
-    <a href="#pictures">Archive</a>
+    <a href="#hero" data-ch="hero"><b class="no">01</b><span class="lb">Opening</span></a>
+    <a href="#inheritance" data-ch="archive"><b class="no">02</b><span class="lb">Inheritance</span></a>
+    <a href="#ledger" data-ch="ledger"><b class="no">03</b><span class="lb">By the<br>Numbers</span></a>
+    <a href="#journey" data-ch="journey"><b class="no">04</b><span class="lb">The<br>Journey</span></a>
+    <a href="#atlas" data-ch="atlas"><b class="no">05</b><span class="lb">Achievements</span></a>
+    <a href="#regions" data-ch="regions"><b class="no">06</b><span class="lb">The<br>Regions</span></a>
+    <a href="#voices" data-ch="voices"><b class="no">07</b><span class="lb">Voices</span></a>
+    <a href="#pictures" data-ch="film"><b class="no">08</b><span class="lb">In Pictures</span></a>
+    <a href="#future" data-ch="future"><b class="no">09</b><span class="lb">What's Next</span></a>
+    <a href="#closing" data-ch="closing"><b class="no">10</b><span class="lb">The Record<br>Continues</span></a>
   </nav>
-  <span class="edition">No. 40 · 1986–2026</span>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuOverlay" aria-label="Open chapter menu">
+    <span class="mb-disc" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="mb-lb" aria-hidden="true">Menu</span>
+  </button>
 </header>
+
+<!-- CHAPTER MENU OVERLAY -->
+<div class="menu-overlay" id="menuOverlay" hidden>
+  <nav aria-label="All chapters">
+    <a href="#hero"><b>01</b>Opening</a>
+    <a href="#inheritance"><b>02</b>Inheritance</a>
+    <a href="#ledger"><b>03</b>By the Numbers</a>
+    <a href="#journey"><b>04</b>The Journey</a>
+    <a href="#atlas"><b>05</b>Achievements</a>
+    <a href="#regions"><b>06</b>The Regions</a>
+    <a href="#voices"><b>07</b>Voices</a>
+    <a href="#pictures"><b>08</b>In Pictures</a>
+    <a href="#future"><b>09</b>What's Next</a>
+    <a href="#closing"><b>10</b>The Record Continues</a>
+  </nav>
+</div>
 
 <!-- CHAPTER RAIL · 1986 → 2026 -->
 <nav class="rail" aria-label="Story progress">
@@ -562,31 +709,80 @@ body.ready .hero-stats{animation:riseIn .8s var(--ease-cinematic) both;animation
 
 <main id="main" class="story">
 
-<!-- 01 · HERO -->
+<!-- 01 · HERO · THE GOLDEN EDITION -->
 <section class="chapter chapter--hero" id="hero" data-scene="hero" aria-labelledby="heroTitle">
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow">Republic of Uganda · 1986–2026</p>
-      <h1 id="heroTitle">Forty years, <em>counted</em>.</h1>
-      <p class="thesis">Every figure on this page is sourced — scroll for the record, not the rhetoric.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-fill" href="#inheritance">Open the record</a>
-        <a class="btn btn-ghost" href="#sources">How we source this</a>
-      </div>
-      <div class="hero-stats" id="heroStats">
-        <div class="hs"><b><span class="dr" data-dr data-to="986" data-prefix="$">986</span></b><span class="lbl">GDP per capita<a class="fn" href="#src-4">[4]</a></span></div>
-        <div class="hs"><b><span class="dr" data-dr data-to="2048" data-suffix="&nbsp;MW">2,048</span></b><span class="lbl">Electricity generation<a class="fn" href="#src-6">[6]</a></span></div>
-        <div class="hs"><b><span class="dr" data-dr data-to="16" data-suffix="%">16</span></b><span class="lbl">National poverty<a class="fn" href="#src-4">[4]</a></span></div>
+
+  <!-- composited art: golden landscape clipped to the Uganda silhouette, president above it -->
+  <div class="hx-art" aria-hidden="true">
+    <svg class="hx-map" viewBox="0 0 480 460" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <clipPath id="hxClip"><path d="M116,60 L360,72 Q420,74 422,124 L420,184 L418,256 Q414,300 360,302 L418,302 Q424,330 408,360 Q374,406 312,400 Q286,372 286,338 L210,330 L208,316 L168,372 Q120,388 92,362 L60,268 Q62,210 84,176 Q70,110 78,96 Q70,62 116,60 Z"/></clipPath>
+        <linearGradient id="hxSky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fdf3d9"/>
+          <stop offset=".45" stop-color="#f3d9a0"/>
+          <stop offset=".75" stop-color="#dfb367"/>
+          <stop offset="1" stop-color="#8a6a35"/>
+        </linearGradient>
+        <filter id="hxSoft" x="-8%" y="-8%" width="116%" height="116%"><feGaussianBlur stdDeviation="3.5"/></filter>
+      </defs>
+      <g clip-path="url(#hxClip)" filter="url(#hxSoft)">
+        <rect width="480" height="460" fill="url(#hxSky)"/>
+        <image href="assets/fig-expressway.webp" x="-40" y="150" width="560" height="330" preserveAspectRatio="xMidYMid slice" opacity=".5"/>
+        <rect width="480" height="460" fill="#e9b45f" opacity=".38"/>
+        <rect y="300" width="480" height="160" fill="#6b4d22" opacity=".35"/>
+      </g>
+    </svg>
+    <img class="hx-president" src="assets/cut-president-hero.webp" alt="" width="697" height="794" fetchpriority="high" decoding="async"/>
+  </div>
+
+  <div class="hx-grid">
+    <div class="hx-copy">
+      <p class="hx-eyebrow">A national record. Four decades.</p>
+      <h1 id="heroTitle">Forty Years of Transformation</h1>
+      <p class="hx-republic"><span class="hx-rule" aria-hidden="true"></span>Republic of Uganda<i>·</i>1986–2026</p>
+      <p class="hx-sub">From a nation in ruins<br>to a nation on the rise.</p>
+      <p class="hx-lead">For forty years, the National Resistance Movement has stewarded peace, restored hope, and built the foundations for a prosperous, united and self-reliant Uganda.</p>
+      <div class="hx-ctas">
+        <a class="hx-btn" href="#inheritance">Explore the Record<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="hx-watch" href="#pictures"><span class="hx-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6.5v11l9-5.5z" fill="currentColor"/></svg></span>Watch Intro</a>
       </div>
     </div>
-    <figure class="hero-figure">
-      <img src="assets/cut-president-hero.webp" alt="The President of the Republic of Uganda" width="697" height="794" fetchpriority="high" decoding="async"/>
-      <figcaption><span>The President · Republic of Uganda</span><span>State House</span></figcaption>
-    </figure>
   </div>
-  <div class="scroll-cue" aria-hidden="true">
-    <span>The record</span>
-    <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+  <div class="hx-scroll" aria-hidden="true"><span>Scroll to begin</span><i></i></div>
+
+  <!-- national record strip -->
+  <div class="hx-stats" role="list" aria-label="Transformation at a glance">
+    <div class="hx-stat" role="listitem">
+      <span class="hx-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20h18M4 16l5-5 3 3 7-8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 6h4v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="hx-k">GDP per capita (USD)<a class="fn" href="#src-4">[4]</a></span>
+      <b class="hx-v">$330 <i>→</i> $986</b>
+      <span class="hx-y"><span>1986</span><span>2026</span></span>
+    </div>
+    <div class="hx-stat" role="listitem">
+      <span class="hx-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 5 13h5l-1 9 8-11h-5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+      <span class="hx-k">Electricity generation<a class="fn" href="#src-6">[6]</a></span>
+      <b class="hx-v">60 <i>→</i> 2,048 <em>MW</em></b>
+      <span class="hx-y"><span>1986</span><span>2026</span></span>
+    </div>
+    <div class="hx-stat" role="listitem">
+      <span class="hx-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.6-3 2.8-5 5.5-5s4.9 2 5.5 5M16 5.5a3 3 0 0 1 0 5M18.5 14c1.4.8 2.4 2.2 2.8 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+      <span class="hx-k">Poverty rate<a class="fn" href="#src-4">[4]</a></span>
+      <b class="hx-v">56% <i>→</i> 16%</b>
+      <span class="hx-y"><span>1986</span><span>2026</span></span>
+    </div>
+    <div class="hx-stat" role="listitem">
+      <span class="hx-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="7.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="7.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M2.8 18.5c.5-2.8 2.5-4.6 5.2-4.6 1.4 0 2.6.5 3.5 1.4.9-.9 2.1-1.4 3.5-1.4 2.7 0 4.7 1.8 5.2 4.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+      <span class="hx-k">Refugees hosted<a class="fn" href="#src-5">[5]</a></span>
+      <b class="hx-v">1.8M</b>
+      <span class="hx-y"><span>Over four decades</span></span>
+    </div>
+    <div class="hx-stat" role="listitem">
+      <span class="hx-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 8.2 7 9.5 4-1.3 7-5 7-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m9 12 2.2 2.2L15.5 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="hx-k">Years of stability</span>
+      <b class="hx-v">40</b>
+      <span class="hx-y"><span>1986–2026</span></span>
+    </div>
   </div>
 </section>
 
@@ -912,7 +1108,7 @@ const hdr=document.getElementById('siteHeader');
 addEventListener('scroll',()=>{hdr.classList.toggle('scrolled',scrollY>40)},{passive:true});
 
 /* scene manager: one national stage */
-const railLinks=[...document.querySelectorAll('.rail a')];
+const railLinks=[...document.querySelectorAll('.rail a,.top-nav a[data-ch]')];
 const railProg=document.getElementById('railProg');
 const chapters=[...document.querySelectorAll('[data-scene]')].filter(el=>el.tagName==='SECTION');
 const sceneIO=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
@@ -1050,6 +1246,19 @@ if(!reduceMotion && matchMedia('(pointer:fine)').matches){
     });
     btn.addEventListener('pointerleave',()=>{tx=0;ty=0;if(!raf)raf=requestAnimationFrame(loop);});
   });
+}
+
+/* ---------- chapter menu overlay ---------- */
+const menuBtn=document.getElementById('menuBtn'),menuOverlay=document.getElementById('menuOverlay');
+if(menuBtn&&menuOverlay){
+  function setMenu(open){
+    menuOverlay.hidden=!open;
+    menuBtn.setAttribute('aria-expanded',open?'true':'false');
+    if(open)menuOverlay.querySelector('a').focus();else menuBtn.focus();
+  }
+  menuBtn.addEventListener('click',()=>setMenu(menuOverlay.hidden));
+  menuOverlay.addEventListener('click',e=>{if(e.target.closest('a')||e.target===menuOverlay)setMenu(false);});
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&!menuOverlay.hidden)setMenu(false);});
 }
 
 /* ---------- terrain flow-field: curl-noise particles, screen-blended over the stage ---------- */
