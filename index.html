@@ -436,6 +436,55 @@ h1,h2,h3{font-weight:600;letter-spacing:-.005em}
 /* mono survives only as metadata (≤1 per viewport) */
 .fr,.f-meta{font-family:var(--mono)}
 .fn{font-family:var(--sans);font-weight:600}
+
+/* ============ PLAN V4 · TERRAIN REDESIGN ============ */
+:root{
+  /* primitives — OKLCH, perceptually uniform across hues */
+  --p-soil-00:oklch(12% 0.02 55);
+  --p-soil-10:oklch(18% 0.03 55);
+  --p-savanna-50:oklch(72% 0.13 75);
+  --p-savanna-70:oklch(85% 0.09 78);
+  --p-papyrus-50:oklch(58% 0.09 145);
+  --p-nile-50:oklch(58% 0.07 235);
+  --p-laterite-50:oklch(58% 0.13 35);
+  --p-mist-90:oklch(93% 0.02 80);
+  /* remap existing semantic tokens onto the terrain palette — additive,
+     every rule in this file that already reads var(--gold) etc. repaints */
+  --black:var(--p-soil-00);
+  --charcoal:var(--p-soil-10);
+  --gold:var(--p-savanna-50);
+  --gold-hi:var(--p-savanna-70);
+  --ivory:var(--p-mist-90);
+  --green:var(--p-papyrus-50);
+  --blue:var(--p-nile-50);
+  --red:var(--p-laterite-50);
+}
+
+/* terrain flow-field canvas — sits inside the fixed stage, screen-blended
+   so it reads as atmosphere over the existing layers, never a flat shape */
+.l-terrain{position:absolute;inset:0;opacity:.5;mix-blend-mode:screen;transition:opacity 900ms var(--ease-out)}
+.stage>.l-terrain{opacity:.5}
+@media (prefers-reduced-motion: reduce){.l-terrain{opacity:.22}}
+@media (forced-colors: active){.l-terrain{display:none}}
+
+/* magnetic buttons — JS drives transform via spring integration;
+   CSS only declares the compositor hint and a resting transition for fallback */
+.btn{will-change:transform}
+.btn:not(.magnetized){transition:background .3s,color .3s,border-color .3s,transform .4s var(--ease-out)}
+
+/* digit-roll — each digit is a masked column of stacked glyphs that
+   slides to the target row, replacing the old linear count-up */
+.dr{display:inline-flex;font-variant-numeric:lining-nums tabular-nums}
+.dr-col{display:inline-block;height:1em;overflow:hidden;position:relative;width:.62em;text-align:center}
+.dr-col .dr-strip{display:flex;flex-direction:column;height:10em;flex:none;transition:transform 900ms var(--ease-cinematic)}
+.dr-col .dr-d{height:1em;line-height:1;display:flex;align-items:center;justify-content:center;flex:none}
+.dr-static{display:inline}
+
+/* hero stat strip — pulls the strongest three figures into first paint */
+.hero-stats{display:flex;gap:clamp(22px,3vw,44px);margin-top:30px;padding-top:22px;border-top:var(--hairline-soft);flex-wrap:wrap}
+.hero-stats .hs b{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,2.6vw,2.2rem);color:var(--gold-hi);display:block;line-height:1}
+.hero-stats .hs .lbl{display:block;margin-top:7px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-2)}
+body.ready .hero-stats{animation:riseIn .8s var(--ease-cinematic) both;animation-delay:.5s}
 </style>
 </head>
 <body data-scene="hero">
@@ -461,6 +510,7 @@ h1,h2,h3{font-weight:600;letter-spacing:-.005em}
 <!-- BACKGROUND STAGE · one national film -->
 <div class="stage" aria-hidden="true">
   <div class="l-base"></div>
+  <canvas class="l-terrain" id="terrainField" aria-hidden="true"></canvas>
   <div class="l-map">
     <svg viewBox="0 0 480 460">
       <path class="ln" d="M116,60 L360,72 Q420,74 422,124 L420,184 L418,256 Q414,300 360,302 L418,302 Q424,330 408,360 Q374,406 312,400 Q286,372 286,338 L210,330 L208,316 L168,372 Q120,388 92,362 L60,268 Q62,210 84,176 Q70,110 78,96 Q70,62 116,60 Z"/>
@@ -517,11 +567,16 @@ h1,h2,h3{font-weight:600;letter-spacing:-.005em}
   <div class="hero-grid">
     <div class="hero-copy">
       <p class="eyebrow">Republic of Uganda · 1986–2026</p>
-      <h1 id="heroTitle">Forty Years of <em>Transformation</em></h1>
-      <p class="thesis">From a nation in ruins to a nation on the rise.</p>
+      <h1 id="heroTitle">Forty years, <em>counted</em>.</h1>
+      <p class="thesis">Every figure on this page is sourced — scroll for the record, not the rhetoric.</p>
       <div class="hero-ctas">
-        <a class="btn btn-fill" href="#inheritance">Explore the Record</a>
-        <a class="btn btn-ghost" href="#ledger">View the National Ledger</a>
+        <a class="btn btn-fill" href="#inheritance">Open the record</a>
+        <a class="btn btn-ghost" href="#sources">How we source this</a>
+      </div>
+      <div class="hero-stats" id="heroStats">
+        <div class="hs"><b><span class="dr" data-dr data-to="986" data-prefix="$">986</span></b><span class="lbl">GDP per capita<a class="fn" href="#src-4">[4]</a></span></div>
+        <div class="hs"><b><span class="dr" data-dr data-to="2048" data-suffix="&nbsp;MW">2,048</span></b><span class="lbl">Electricity generation<a class="fn" href="#src-6">[6]</a></span></div>
+        <div class="hs"><b><span class="dr" data-dr data-to="16" data-suffix="%">16</span></b><span class="lbl">National poverty<a class="fn" href="#src-4">[4]</a></span></div>
       </div>
     </div>
     <figure class="hero-figure">
@@ -934,6 +989,133 @@ if(evmap){
     regionCards.querySelectorAll('.rcard').forEach(c=>c.classList.toggle('hide',cat!=='all'&&c.dataset.cat!==cat));
   }));
 }
+</script>
+
+<!-- ================= PLAN V4 · TERRAIN REDESIGN ENGINE ================= -->
+<script>
+(function(){
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- digit-roll: slot-machine stat reveal, hero only ---------- */
+function buildDigitRoll(el){
+  const to=parseInt(el.dataset.to,10);
+  const prefix=el.dataset.prefix||'',suffix=el.dataset.suffix||'';
+  const str=to.toLocaleString();
+  el.textContent='';
+  const cols=[];
+  if(prefix)el.appendChild(staticSpan(prefix));
+  [...str].forEach(ch=>{
+    if(/\d/.test(ch)){
+      const col=document.createElement('span');col.className='dr-col';
+      const strip=document.createElement('span');strip.className='dr-strip';
+      for(let d=0;d<10;d++){const s=document.createElement('span');s.className='dr-d';s.textContent=d;strip.appendChild(s);}
+      const start=reduceMotion?+ch:Math.floor(Math.random()*10);
+      strip.style.transition=reduceMotion?'none':'';
+      strip.style.transform=`translateY(${-start}em)`;
+      col.appendChild(strip);el.appendChild(col);
+      cols.push({strip,target:+ch});
+    } else { el.appendChild(staticSpan(ch)); }
+  });
+  if(suffix)el.appendChild(staticSpan(suffix));
+  el._drCols=cols;
+  function staticSpan(t){const s=document.createElement('span');s.className='dr-static';s.textContent=t;return s;}
+}
+function rollDigitRoll(el){
+  if(el.dataset.done||!el._drCols)return;el.dataset.done=1;
+  el._drCols.forEach((c,i)=>{
+    setTimeout(()=>{c.strip.style.transform=`translateY(${-c.target}em)`;},i*70);
+  });
+}
+const heroDr=[...document.querySelectorAll('#heroStats .dr[data-dr]')];
+heroDr.forEach(buildDigitRoll);
+if(!reduceMotion) setTimeout(()=>heroDr.forEach(rollDigitRoll),640); /* lands after headline settles */
+
+/* ---------- magnetic buttons: numeric spring integration, not CSS easing ---------- */
+if(!reduceMotion && matchMedia('(pointer:fine)').matches){
+  document.querySelectorAll('.btn').forEach(btn=>{
+    let x=0,y=0,vx=0,vy=0,tx=0,ty=0,raf=null;
+    const stiffness=.18,damping=.72;
+    function loop(){
+      vx=(vx+(tx-x)*stiffness)*damping; vy=(vy+(ty-y)*stiffness)*damping;
+      x+=vx; y+=vy;
+      btn.style.transform=`translate3d(${x.toFixed(2)}px,${y.toFixed(2)}px,0)`;
+      if(Math.abs(vx)>.02||Math.abs(vy)>.02||Math.abs(tx-x)>.02||Math.abs(ty-y)>.02){raf=requestAnimationFrame(loop);}
+      else{raf=null;btn.style.transform=tx===0&&ty===0?'':btn.style.transform;}
+    }
+    btn.addEventListener('pointermove',e=>{
+      const r=btn.getBoundingClientRect();
+      tx=(e.clientX-(r.left+r.width/2))*.3; ty=(e.clientY-(r.top+r.height/2))*.3;
+      btn.classList.add('magnetized');
+      if(!raf)raf=requestAnimationFrame(loop);
+    });
+    btn.addEventListener('pointerleave',()=>{tx=0;ty=0;if(!raf)raf=requestAnimationFrame(loop);});
+  });
+}
+
+/* ---------- terrain flow-field: curl-noise particles, screen-blended over the stage ---------- */
+const canvas=document.getElementById('terrainField');
+if(canvas&&canvas.getContext){
+  const ctx=canvas.getContext('2d');
+  const dpr=Math.min(devicePixelRatio||1,2);
+  let w=0,h=0;
+  function resize(){ w=innerWidth; h=innerHeight; canvas.width=w*dpr; canvas.height=h*dpr; canvas.style.width=w+'px'; canvas.style.height=h+'px'; }
+  resize(); addEventListener('resize',resize,{passive:true});
+
+  function hash(x,y){const s=Math.sin(x*127.1+y*311.7)*43758.5453123;return s-Math.floor(s);}
+  function noise(x,y){
+    const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi;
+    const u=xf*xf*(3-2*xf),v=yf*yf*(3-2*yf);
+    const a=hash(xi,yi),b=hash(xi+1,yi),c=hash(xi,yi+1),d=hash(xi+1,yi+1);
+    return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v;
+  }
+  function curl(x,y){
+    const e=.06;
+    return { x:(noise(x,y+e)-noise(x,y-e))/(2*e), y:-(noise(x+e,y)-noise(x-e,y))/(2*e) };
+  }
+
+  /* accent per chapter — RGB approximations of the OKLCH terrain tokens */
+  const SCENE_RGB={hero:[200,154,78],glance:[200,154,78],archive:[52,90,118],ledger:[52,90,118],
+    journey:[150,80,50],atlas:[104,140,96],regions:[104,140,96],voices:[150,138,112],
+    film:[200,154,78],future:[200,154,78],closing:[200,154,78]};
+  let cur=[200,154,78],tgt=[200,154,78];
+
+  if(reduceMotion){
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    const g=ctx.createRadialGradient(w*.5,h*.4,0,w*.5,h*.4,w*.7);
+    g.addColorStop(0,'rgba(200,154,78,.22)'); g.addColorStop(1,'rgba(200,154,78,0)');
+    ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
+  } else {
+    const dense=w<640?24:(w<1100?42:60);
+    const particles=Array.from({length:dense},()=>({x:Math.random()*w,y:Math.random()*h,life:Math.random()}));
+    let last=0,running=true;
+    function frame(t){
+      if(!running)return;
+      if(t-last<33){requestAnimationFrame(frame);return;} /* ~30fps cap — atmosphere, not a game loop */
+      last=t;
+      const sc=document.body.dataset.scene||'hero';
+      tgt=SCENE_RGB[sc]||tgt;
+      cur=cur.map((v,i)=>v+(tgt[i]-v)*.03);
+      const [r,g2,b]=cur.map(v=>v|0);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      ctx.clearRect(0,0,w,h);
+      const rg=ctx.createRadialGradient(w*.5,h*.42,0,w*.5,h*.42,w*.75);
+      rg.addColorStop(0,`rgba(${r},${g2},${b},.15)`); rg.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle=rg; ctx.fillRect(0,0,w,h);
+      ctx.shadowBlur=8; ctx.shadowColor=`rgba(${r},${g2},${b},.5)`;
+      ctx.fillStyle=`rgba(${r},${g2},${b},.48)`;
+      particles.forEach(p=>{
+        const v=curl(p.x*.0016,p.y*.0016);
+        p.x+=v.x*2.4; p.y+=v.y*2.4; p.life-=.0025;
+        if(p.life<=0||p.x<0||p.x>w||p.y<0||p.y>h){p.x=Math.random()*w;p.y=Math.random()*h;p.life=1;}
+        ctx.beginPath(); ctx.arc(p.x,p.y,1.6,0,Math.PI*2); ctx.fill();
+      });
+      requestAnimationFrame(frame);
+    }
+    document.addEventListener('visibilitychange',()=>{running=!document.hidden;if(running)requestAnimationFrame(frame);});
+    requestAnimationFrame(frame);
+  }
+}
+})();
 </script>
 </body>
 </html>
