@@ -249,14 +249,12 @@ const jsonLd = [
 
 <script>
   import { initChapterSpy } from '../lib/chapter-spy';
-  import { gsap, prefersReducedMotion } from '../lib/motion';
-  import { SplitText } from 'gsap/SplitText';
+  import { gsap, prefersReducedMotion, SplitText } from '../lib/motion';
 
   initChapterSpy(['opening', 'inheritance', 'ledger', 'journey', 'achievements', 'regions', 'voices', 'pictures', 'next', 'record']);
 
   const heading = document.querySelector<HTMLElement>('[data-split-text]');
   if (heading && !prefersReducedMotion()) {
-    gsap.registerPlugin(SplitText);
     const split = new SplitText(heading, { type: 'words' });
     gsap.from(split.words, {
       yPercent: 100,

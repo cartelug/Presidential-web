@@ -1,9 +1,25 @@
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 
 let lenis: Lenis | null = null;
 let started = false;
+let pluginsRegistered = false;
+
+/**
+ * Every island bundle imports this module independently (Astro gives each
+ * client:* component its own chunk), so plugin registration must be
+ * idempotent — calling gsap.registerPlugin from two chunks racing on
+ * first paint intermittently threw inside GSAP's internal registry.
+ */
+function registerPlugins(): void {
+  if (pluginsRegistered) return;
+  pluginsRegistered = true;
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+}
+
+registerPlugins();
 
 export function prefersReducedMotion(): boolean {
   return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -35,8 +51,6 @@ export function initMotion(): { lenis: Lenis | null } {
   if (started) return { lenis };
   started = true;
 
-  gsap.registerPlugin(ScrollTrigger);
-
   if (prefersReducedMotion()) {
     return { lenis: null };
   }
@@ -67,4 +81,4 @@ export function getLenis(): Lenis | null {
   return lenis;
 }
 
-export { gsap, ScrollTrigger };
+export { gsap, ScrollTrigger, SplitText };
