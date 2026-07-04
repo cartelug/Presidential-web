@@ -1,0 +1,108 @@
+---
+const year = 2026;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-identity">
+      <p class="lockup-mono">Office of the President · Republic of Uganda</p>
+      <p class="footer-line">Forty Years of Transformation · 1986–{year}</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Site">
+      <a href={`${base}/#opening`}>Home</a>
+      <a href={`${base}/sources`}>Sources &amp; Methodology</a>
+      <a href={`${base}/accessibility`}>Accessibility</a>
+      <a href={`${base}/downloads`}>Downloads</a>
+    </nav>
+
+    <div class="footer-lang" role="group" aria-label="Language">
+      <button type="button" aria-current="true">English</button>
+      <button type="button" disabled title="Coming soon">Luganda</button>
+      <button type="button" disabled title="Coming soon">Kiswahili</button>
+    </div>
+  </div>
+
+  <p class="footer-signoff">This record is maintained by the Office of the President and reviewed for accuracy against the sources cited at <a href={`${base}/sources`}>/sources</a>.</p>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--obsidian);
+    border-top: var(--border-hairline);
+    padding-block: var(--space-16);
+    padding-inline: var(--page-margin);
+  }
+  .site-footer-inner {
+    max-width: var(--content-max);
+    margin-inline: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+    justify-content: space-between;
+  }
+  .lockup-mono {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin: 0;
+  }
+  .footer-line {
+    font-family: var(--font-display);
+    color: var(--cream);
+    margin: var(--space-2) 0 0;
+  }
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .footer-nav a {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--mist-bright);
+  }
+  .footer-nav a:hover {
+    color: var(--gold-hi);
+  }
+  .footer-lang {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+  .footer-lang button {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: none;
+    border: var(--border-hairline);
+    color: var(--mist);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-control);
+  }
+  .footer-lang button[aria-current='true'] {
+    color: var(--gold-hi);
+    border-color: var(--gold-hairline);
+  }
+  .footer-lang button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .footer-signoff {
+    max-width: var(--content-max);
+    margin: var(--space-8) auto 0;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--mist);
+  }
+  .footer-signoff a {
+    color: var(--gold);
+  }
+</style>
