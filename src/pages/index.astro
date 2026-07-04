@@ -334,6 +334,14 @@ const jsonLd = [
     line-height: var(--leading-display-xl);
     font-weight: var(--weight-display-xl);
     margin: var(--space-4) 0;
+    overflow-wrap: break-word;
+  }
+  @media (max-width: 420px) {
+    .opening-inner h1 {
+      /* "Transformation" alone overflows a 375px column at the 3.25rem clamp
+         floor; scale purely by viewport width below the smallest breakpoint. */
+      font-size: clamp(2.25rem, 11vw, 7rem);
+    }
   }
   .opening-subtitle {
     font-family: var(--font-mono);
@@ -372,10 +380,15 @@ const jsonLd = [
     font-size: 0.7rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    border: var(--border-hairline);
-    color: var(--gold-hi);
+    border: 1px solid var(--ink-soft);
+    color: var(--ink);
     text-decoration: none;
     margin-top: var(--space-8);
+  }
+  .btn-ghost:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
   }
   .opening-portrait {
     position: absolute;
@@ -473,7 +486,10 @@ const jsonLd = [
     color: var(--ink);
   }
   .chapter-ledger .eyebrow {
-    color: var(--gold-deep);
+    color: var(--ink-soft);
+  }
+  .chapter-ledger .eyebrow::before {
+    background: var(--gold-deep);
   }
   .chapter-ledger h2 {
     color: var(--ink);
@@ -536,7 +552,7 @@ const jsonLd = [
   }
   :global(.era-year) {
     font-size: clamp(4rem, 12vw, 9rem);
-    color: rgb(from var(--gold) r g b / 18%);
+    color: var(--gold-hi);
     line-height: 0.8;
   }
   :global(.era-label) {
