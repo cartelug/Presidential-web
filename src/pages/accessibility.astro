@@ -1,0 +1,119 @@
+---
+import PageShell from '../components/PageShell.astro';
+---
+
+<PageShell
+  title="Accessibility · Forty Years of Transformation"
+  description="The accessibility statement, conformance target, and language options for the Forty Years of Transformation record."
+  path="/accessibility"
+>
+  <section class="page-section">
+    <div class="wrap">
+      <p class="eyebrow">Accessibility</p>
+      <h1>Built to be read by everyone.</h1>
+      <p class="lead">
+        This record targets WCAG 2.2 Level AA. It is designed to be readable
+        without JavaScript, navigable by keyboard alone, and safe for people who
+        prefer reduced motion.
+      </p>
+
+      <h2>What we've built in</h2>
+      <ul class="a11y-list">
+        <li>Text contrast of at least 4.5:1 for body copy and 3:1 for large text and UI, including the mist-bright body colour used on the dark chapters.</li>
+        <li>A visible 2px gold focus outline with a 2px offset on every interactive element — links, buttons, region nodes, filmstrip controls.</li>
+        <li>A skip-to-content link as the first focusable element on every page.</li>
+        <li>Semantic landmarks (header, nav, main, footer) and a single, correctly-ordered heading per page.</li>
+        <li>Full keyboard operability for the chapter navigation, the regional map, and the archive filmstrip — none of them trap focus.</li>
+        <li>A complete <code>prefers-reduced-motion</code> fallback: the transformation spine is drawn statically, ledger figures show their final value immediately, and parallax, pinning and Ken-Burns effects are all disabled.</li>
+        <li>Descriptive alt text on every content image; decorative graphics are marked <code>aria-hidden</code>.</li>
+        <li>A readable, unstyled fallback for visitors without JavaScript — all copy and figures are present in the page's initial HTML.</li>
+      </ul>
+
+      <h2 id="language">Language</h2>
+      <p>
+        The record is published in English. Copy is held in typed content
+        collections so it can be translated without touching layout code;
+        Luganda and Kiswahili are reserved as the next languages to ship.
+      </p>
+      <div class="footer-lang" role="group" aria-label="Language">
+        <button type="button" aria-current="true">English</button>
+        <button type="button" disabled title="Coming soon">Luganda</button>
+        <button type="button" disabled title="Coming soon">Kiswahili</button>
+      </div>
+
+      <h2>Reporting an issue</h2>
+      <p>
+        If you encounter an accessibility barrier anywhere on this record, please
+        contact the Office of the President so it can be corrected. Include the
+        page, the assistive technology or browser you were using, and what you
+        expected to happen.
+      </p>
+    </div>
+  </section>
+</PageShell>
+
+<style>
+  .page-section {
+    padding-block: var(--space-32) var(--space-24);
+    background: var(--navy);
+    min-height: 60vh;
+  }
+  .wrap {
+    max-width: var(--content-max);
+    margin-inline: auto;
+    padding-inline: var(--page-margin);
+  }
+  h1 {
+    font-size: var(--text-h1);
+    max-width: 20ch;
+    margin: var(--space-4) 0 var(--space-6);
+  }
+  .lead {
+    font-family: var(--font-display);
+    font-size: var(--text-body-l);
+    max-width: 60ch;
+    color: var(--mist-bright);
+  }
+  h2 {
+    font-size: var(--text-h2);
+    margin-top: var(--space-16);
+    margin-bottom: var(--space-4);
+    border-top: var(--border-gold-hairline);
+    padding-top: var(--space-6);
+  }
+  .a11y-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 68ch;
+    padding-left: 1.2em;
+  }
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--gold-hi);
+  }
+  .footer-lang {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+  .footer-lang button {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: none;
+    border: var(--border-hairline);
+    color: var(--mist);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-control);
+  }
+  .footer-lang button[aria-current='true'] {
+    color: var(--gold-hi);
+    border-color: var(--gold-hairline);
+  }
+  .footer-lang button:disabled {
+    opacity: 0.4;
+  }
+</style>

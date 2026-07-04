@@ -1,0 +1,164 @@
+---
+import { getCollection } from 'astro:content';
+import PageShell from '../components/PageShell.astro';
+
+const sources = (await getCollection('sources')).sort((a, b) => a.data.number - b.data.number);
+const assets = await getCollection('assetLedger');
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cartelug.github.io/Presidential-web/' },
+      { '@type': 'ListItem', position: 2, name: 'Sources & Methodology', item: 'https://cartelug.github.io/Presidential-web/sources' },
+    ],
+  },
+];
+---
+
+<PageShell
+  title="Sources & Methodology · Forty Years of Transformation"
+  description="Every figure and image in the record, cited against its source, with a rights and clearance ledger for every asset used."
+  path="/sources"
+  jsonLd={jsonLd}
+>
+  <section class="page-section">
+    <div class="wrap">
+      <p class="eyebrow">Sources &amp; Methodology</p>
+      <h1>Every number in this record is cited.</h1>
+      <p class="lead">
+        The five national figures on the Home record, and every supporting statistic
+        referenced across the chapters, are drawn from the sources below. Where a
+        figure's measurement basis matters — a baseline year, a definition of
+        capacity — that is noted beside it. Where an image's clearance is still
+        pending, it is marked as such rather than presented as final.
+      </p>
+
+      <h2 id="figures">National figures</h2>
+      <ol class="source-list">
+        {sources.map((s) => (
+          <li id={`src-${s.data.number}`}>
+            <p class="source-claim">{s.data.claim}</p>
+            <p class="source-attribution">{s.data.source}</p>
+            {s.data.note && <p class="source-note">{s.data.note}</p>}
+          </li>
+        ))}
+      </ol>
+
+      <h2 id="assets">Image &amp; asset rights ledger</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Asset</th>
+              <th scope="col">Chapter</th>
+              <th scope="col">Source</th>
+              <th scope="col">Licence</th>
+              <th scope="col">Credit</th>
+              <th scope="col">Cleared</th>
+            </tr>
+          </thead>
+          <tbody>
+            {assets.map((a) => (
+              <tr>
+                <td>{a.data.asset}</td>
+                <td>{a.data.chapter}</td>
+                <td>{a.data.source}</td>
+                <td>{a.data.licence}</td>
+                <td>{a.data.credit}</td>
+                <td>{a.data.cleared ? 'Yes' : 'Pending'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Method note</h2>
+      <p>
+        Figures are labelled with their measurement basis where it matters — for
+        example, the national poverty rate is first measured from the 1992
+        household survey, the earliest series comparable to today's. "Stability"
+        is a continuity count from the transfer of power in January 1986 to 2026,
+        not a third-party statistic. No historical or documentary photograph on
+        this record is AI-generated; where a real photograph has not yet been
+        cleared for a chapter, that chapter shows a labelled placeholder instead.
+      </p>
+    </div>
+  </section>
+</PageShell>
+
+<style>
+  .page-section {
+    padding-block: var(--space-32) var(--space-24);
+    background: var(--navy);
+    min-height: 60vh;
+  }
+  .wrap {
+    max-width: var(--content-max);
+    margin-inline: auto;
+    padding-inline: var(--page-margin);
+  }
+  h1 {
+    font-size: var(--text-h1);
+    max-width: 20ch;
+    margin: var(--space-4) 0 var(--space-6);
+  }
+  .lead {
+    font-family: var(--font-display);
+    font-size: var(--text-body-l);
+    max-width: 60ch;
+    color: var(--mist-bright);
+  }
+  h2 {
+    font-size: var(--text-h2);
+    margin-top: var(--space-24);
+    margin-bottom: var(--space-6);
+    border-top: var(--border-gold-hairline);
+    padding-top: var(--space-6);
+  }
+  .source-list {
+    list-style: decimal;
+    padding-left: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .source-claim {
+    color: var(--cream);
+    margin: 0;
+  }
+  .source-attribution {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--gold);
+    margin: var(--space-1) 0 0;
+  }
+  .source-note {
+    font-size: 0.85rem;
+    color: var(--mist);
+    margin: var(--space-1) 0 0;
+  }
+  .table-scroll {
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 720px;
+  }
+  th,
+  td {
+    text-align: left;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: var(--border-hairline);
+    font-size: 0.85rem;
+  }
+  th {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mist);
+  }
+</style>

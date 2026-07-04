@@ -1,0 +1,72 @@
+---
+import PageShell from '../components/PageShell.astro';
+import Seal from '../components/Seal.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<PageShell
+  title="Page not found · Forty Years of Transformation"
+  description="This page of the record could not be found."
+  path="/404"
+>
+  <section class="not-found">
+    <div class="wrap">
+      <Seal variant="light" />
+      <p class="eyebrow">Frame not found</p>
+      <h1>This page is not part of the record.</h1>
+      <p class="lead">
+        The chapter you're looking for may have moved, or the address may be
+        incomplete. The full record begins at the Opening.
+      </p>
+      <a class="btn-fill" href={`${base}/`}>Return to the Record</a>
+    </div>
+  </section>
+</PageShell>
+
+<style>
+  .not-found {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--cream);
+    color: var(--ink);
+  }
+  .wrap {
+    max-width: 46ch;
+    margin-inline: auto;
+    padding-inline: var(--page-margin);
+  }
+  .not-found .eyebrow {
+    display: block;
+    margin-top: var(--space-6);
+  }
+  h1 {
+    color: var(--ink);
+    font-size: var(--text-h1);
+    margin: var(--space-4) 0 var(--space-6);
+  }
+  .lead {
+    font-family: var(--font-display);
+    font-size: var(--text-body-l);
+    color: var(--ink-soft);
+  }
+  .btn-fill {
+    display: inline-flex;
+    margin-top: var(--space-8);
+    padding: var(--space-4) var(--space-6);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: var(--radius-control);
+  }
+  .btn-fill:hover {
+    background: var(--gold-hi);
+  }
+</style>

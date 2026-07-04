@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import PageShell from '../components/PageShell.astro';
 import Seal from '../components/Seal.astro';
+import ResponsivePicture from '../components/ResponsivePicture.astro';
 import StatStrip from '../components/StatStrip.astro';
 import EvidenceSpine from '../components/islands/EvidenceSpine';
 import LedgerFigure from '../components/islands/LedgerFigure';
@@ -170,14 +171,13 @@ const jsonLd = [
     <div class="achievements-bands">
       {achievements.map((a) => (
         <article class={`achievement-band align-${a.align}`} data-reveal-group>
-          <img
+          <ResponsivePicture
+            class="achievement-image"
             data-reveal
-            src={a.img.src}
+            name={a.image}
             alt={a.img.alt}
-            width={a.img.width}
-            height={a.img.height}
+            sizes="(max-width: 900px) 92vw, 45vw"
             loading="lazy"
-            decoding="async"
           />
           <div class="achievement-copy" data-reveal>
             <p class="eyebrow">{a.pillar}</p>
@@ -574,6 +574,9 @@ const jsonLd = [
   }
   .achievement-band.align-right .achievement-copy {
     direction: ltr;
+  }
+  .achievement-band picture {
+    display: block;
   }
   .achievement-band img {
     width: 100%;

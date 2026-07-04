@@ -139,6 +139,42 @@
   }
 }
 
+@media print {
+  .site-header,
+  .menu-btn,
+  .menu-overlay,
+  .skip-link,
+  .filmstrip-controls,
+  .voice-controls,
+  .footer-lang {
+    display: none !important;
+  }
+  .evidence-spine {
+    display: none !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .filmstrip-track {
+    overflow: visible !important;
+    flex-wrap: wrap !important;
+  }
+  .filmstrip-frame {
+    flex: 0 0 45% !important;
+    page-break-inside: avoid;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .voice-stage {
+    display: none !important;
+  }
+  .chapter {
+    break-inside: avoid-page;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

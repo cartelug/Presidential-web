@@ -8,9 +8,9 @@ const chapters = [
   { href: `${base}/#achievements`, label: 'Achievements' },
   { href: `${base}/#regions`, label: 'Regions' },
   { href: `${base}/#voices`, label: 'Voices' },
-  { href: `${base}/#pictures`, label: 'In Pictures' },
-  { href: `${base}/#next`, label: "What's Next" },
-  { href: `${base}/#record`, label: 'The Record' },
+  { href: `${base}/#pictures`, label: 'Pictures' },
+  { href: `${base}/#next`, label: 'Next' },
+  { href: `${base}/#record`, label: 'Record' },
 ];
 ---
 
@@ -97,15 +97,16 @@ const chapters = [
   }
   .chapter-nav ol {
     display: flex;
-    gap: var(--space-4);
+    gap: var(--space-3);
     list-style: none;
     margin: 0;
     padding: 0;
+    white-space: nowrap;
   }
   .chapter-nav a {
     font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.1em;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     text-decoration: none;
     color: var(--mist);
@@ -179,7 +180,7 @@ const chapters = [
     text-decoration: none;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1180px) {
     .chapter-nav,
     .header-actions {
       display: none;

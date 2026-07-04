@@ -56,6 +56,18 @@ export default function VoicePanel({ voices }: Props) {
           Next →
         </button>
       </div>
+
+      {/* Print-only: every voice, since the on-screen panel shows one at a time. */}
+      <div className="print-only" style={{ display: 'none' }}>
+        {voices.map((v) => (
+          <blockquote key={v.id}>
+            <p>“{v.quote}”</p>
+            <cite>
+              {v.name} — {v.role} · {v.place}
+            </cite>
+          </blockquote>
+        ))}
+      </div>
     </div>
   );
 }
