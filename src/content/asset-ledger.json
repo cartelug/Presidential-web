@@ -1,0 +1,92 @@
+[
+  {
+    "id": "cut-president-hero",
+    "asset": "cut-president-hero (hero portrait cutout)",
+    "chapter": "01 Opening",
+    "source": "Owner-supplied",
+    "licence": "Owner-supplied, all rights reserved",
+    "credit": "Office of the President",
+    "cleared": true
+  },
+  {
+    "id": "bg-inheritance",
+    "asset": "bg-inheritance (the President greeting citizens outdoors)",
+    "chapter": "08 In Pictures",
+    "source": "Owner-supplied",
+    "licence": "Owner-supplied, all rights reserved",
+    "credit": "Office of the President",
+    "cleared": true
+  },
+  {
+    "id": "fig-karuma",
+    "asset": "fig-karuma (Karuma dam aerial, spillway release)",
+    "chapter": "05 Achievements — Energy & infrastructure",
+    "source": "Owner-supplied",
+    "licence": "Owner-supplied, all rights reserved",
+    "credit": "Office of the President",
+    "cleared": true
+  },
+  {
+    "id": "fig-upe",
+    "asset": "fig-upe (classroom, students at desks)",
+    "chapter": "05 Achievements — Health/education/human capital",
+    "source": "Owner-supplied",
+    "licence": "Owner-supplied, all rights reserved",
+    "credit": "Office of the President",
+    "cleared": true
+  },
+  {
+    "id": "fig-expressway",
+    "asset": "fig-expressway (Entebbe Expressway interchange aerial)",
+    "chapter": "05 Achievements — Energy & infrastructure",
+    "source": "Owner-supplied",
+    "licence": "Owner-supplied, all rights reserved",
+    "credit": "Office of the President",
+    "cleared": true
+  },
+  {
+    "id": "fig-coffee",
+    "asset": "fig-coffee (coffee beans and ripening cherries)",
+    "chapter": "05 Achievements — Economy & livelihoods",
+    "source": "Owner-supplied",
+    "licence": "Owner-supplied, all rights reserved",
+    "credit": "Office of the President",
+    "cleared": true
+  },
+  {
+    "id": "fig-health",
+    "asset": "fig-health (neonatal clinic, health workers)",
+    "chapter": "05 Achievements — Health/education/human capital",
+    "source": "Owner-supplied",
+    "licence": "Owner-supplied, all rights reserved",
+    "credit": "Office of the President",
+    "cleared": true
+  },
+  {
+    "id": "og-cover",
+    "asset": "og-cover (social share card)",
+    "chapter": "Meta / Open Graph",
+    "source": "Generated in-repo from hero asset",
+    "licence": "Owner-supplied, all rights reserved",
+    "credit": "Office of the President",
+    "cleared": true
+  },
+  {
+    "id": "archive-1986-pending",
+    "asset": "1986-era archival photograph — PENDING",
+    "chapter": "02 The Inheritance",
+    "source": "Not yet supplied",
+    "licence": "To be confirmed on delivery",
+    "credit": "To be confirmed",
+    "cleared": false
+  },
+  {
+    "id": "crest-pending",
+    "asset": "Official coat of arms — PENDING",
+    "chapter": "01 Opening / Global",
+    "source": "Not yet supplied",
+    "licence": "To be confirmed on delivery",
+    "credit": "To be confirmed",
+    "cleared": false
+  }
+]

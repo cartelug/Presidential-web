@@ -1,0 +1,10 @@
+[
+  { "id": "youth", "order": 1, "theme": "Youth", "note": "A majority-young population entering the workforce over the next decade." },
+  { "id": "industry", "order": 2, "theme": "Industrial capacity", "note": "Moving from raw export toward manufacturing and value addition." },
+  { "id": "energy", "order": 3, "theme": "Energy", "note": "Extending generation capacity to reach the last unconnected districts." },
+  { "id": "technology", "order": 4, "theme": "Technology", "note": "Digital services and connectivity reaching rural enterprise." },
+  { "id": "agriculture", "order": 5, "theme": "Agriculture", "note": "Commercial-scale processing built on smallholder foundations." },
+  { "id": "education", "order": 6, "theme": "Education", "note": "Human capital as the compounding asset of the next forty years." },
+  { "id": "regional-leadership", "order": 7, "theme": "Regional leadership", "note": "Continued responsibility for stability and refuge across the region." },
+  { "id": "resilience", "order": 8, "theme": "Resilience", "note": "Institutions built to outlast any single administration." }
+]

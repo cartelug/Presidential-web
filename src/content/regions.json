@@ -1,0 +1,50 @@
+[
+  {
+    "id": "west-nile",
+    "name": "West Nile",
+    "x": 25,
+    "y": 15,
+    "story": "Home to some of the country's largest refugee-hosting settlements, sharing schools, clinics and farmland with 1.8 million people displaced from neighbouring conflicts.",
+    "themes": ["refugee-hosting", "agriculture"]
+  },
+  {
+    "id": "karamoja",
+    "name": "Karamoja",
+    "x": 75,
+    "y": 25,
+    "story": "New roads and boreholes are reaching pastoral communities once cut off for months at a time during the rains.",
+    "themes": ["roads", "agriculture"]
+  },
+  {
+    "id": "acholi",
+    "name": "Acholi (Northern)",
+    "x": 45,
+    "y": 20,
+    "story": "Post-conflict recovery rebuilt schools and workshops; a new power line now keeps small businesses running through the day.",
+    "themes": ["schools", "power"]
+  },
+  {
+    "id": "eastern",
+    "name": "Busoga & Elgon (Eastern)",
+    "x": 68,
+    "y": 55,
+    "story": "The Source of the Nile Bridge at Jinja and the coffee terraces of Mount Elgon anchor the region's trade routes.",
+    "themes": ["roads", "agriculture"]
+  },
+  {
+    "id": "central",
+    "name": "Central (Kampala)",
+    "x": 45,
+    "y": 65,
+    "story": "The Kampala–Entebbe Expressway and the national grid's hub sit at the country's economic centre.",
+    "themes": ["roads", "power"]
+  },
+  {
+    "id": "western",
+    "name": "Rwenzori & Ankole (Western)",
+    "x": 25,
+    "y": 60,
+    "story": "Hydropower from the Nile basin extends the grid west, powering dairy, coffee, and a growing university town at Mbarara.",
+    "themes": ["power", "schools"]
+  }
+]

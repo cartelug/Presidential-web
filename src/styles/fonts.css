@@ -1,0 +1,20 @@
+/*
+  Self-hosted type — Build Bible §3.2 / §11 / Appendix B.
+  Display: Fraunces Variable (wght axis) — normal weight critical, italic lazy
+  (used only in below-fold pull-quotes/thesis lines).
+  Body: Schibsted Grotesk static 400/600 — NOT Inter.
+  Data/utility: Geist Mono static 400.
+  Each @font-face below is unicode-range-scoped by Fontsource; browsers only
+  fetch the subset matching the glyphs actually on the page.
+*/
+
+/* Display — Fraunces Variable, weight axis 100–900, used at 300–400 for headlines */
+@import '@fontsource-variable/fraunces/wght.css';
+@import '@fontsource-variable/fraunces/wght-italic.css';
+
+/* Body — Schibsted Grotesk, regular + semibold only */
+@import '@fontsource/schibsted-grotesk/400.css';
+@import '@fontsource/schibsted-grotesk/600.css';
+
+/* Data / utility — Geist Mono, regular only (uppercase + tracked in use) */
+@import '@fontsource/geist-mono/400.css';

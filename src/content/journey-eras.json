@@ -1,0 +1,48 @@
+[
+  {
+    "id": "foundation",
+    "order": 1,
+    "year": "1986",
+    "label": "Foundation",
+    "note": "A new government inherits a country of 33 districts, 60 megawatts, and a shattered economy."
+  },
+  {
+    "id": "stabilisation",
+    "order": 2,
+    "year": "1990s",
+    "label": "Stabilisation",
+    "note": "Universal Primary Education begins; classrooms fill faster than they can be built.",
+    "image": "fig-upe"
+  },
+  {
+    "id": "growth",
+    "order": 3,
+    "year": "2000s",
+    "label": "Growth",
+    "note": "Agricultural value chains — coffee foremost — start moving from subsistence toward trade.",
+    "image": "fig-coffee"
+  },
+  {
+    "id": "transformation",
+    "order": 4,
+    "year": "2010s",
+    "label": "Transformation",
+    "note": "The Kampala–Entebbe Expressway and the Source of the Nile Bridge open; travel times across the country fall.",
+    "image": "fig-expressway"
+  },
+  {
+    "id": "acceleration",
+    "order": 5,
+    "year": "2020s",
+    "label": "Acceleration",
+    "note": "Karuma Hydropower Station comes online; installed generation capacity passes two gigawatts.",
+    "image": "fig-karuma"
+  },
+  {
+    "id": "beyond",
+    "order": 6,
+    "year": "Beyond",
+    "label": "Next horizon",
+    "note": "Forty years of foundation become the base for the next chapter: capacity."
+  }
+]

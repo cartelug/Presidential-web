@@ -1,0 +1,151 @@
+@import 'tailwindcss';
+@import './tokens.css';
+@import './fonts.css';
+
+/* Map tokens onto Tailwind's theme so utilities (bg-navy, text-gold, etc.)
+   read from the single source of truth in tokens.css. */
+@theme inline {
+  --color-navy: var(--navy);
+  --color-obsidian: var(--obsidian);
+  --color-navy-raised: var(--navy-raised);
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-gold: var(--gold);
+  --color-gold-hi: var(--gold-hi);
+  --color-gold-deep: var(--gold-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-mist: var(--mist);
+  --color-mist-bright: var(--mist-bright);
+  --color-line: var(--line);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  --spacing-section-desktop: var(--section-pad-desktop);
+  --spacing-section-tablet: var(--section-pad-tablet);
+  --spacing-section-mobile: var(--section-pad-mobile);
+
+  --radius-none: var(--radius);
+  --radius-control: var(--radius-control);
+
+  --ease-entrance: var(--ease-entrance);
+  --ease-standard: var(--ease-standard);
+  --ease-exit: var(--ease-exit);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    background: var(--navy);
+    color-scheme: dark;
+    scroll-behavior: auto; /* Lenis owns smoothing; native scroll stays instant as a fallback */
+  }
+
+  body {
+    background: var(--navy);
+    color: var(--mist-bright);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    color: var(--cream);
+    font-weight: var(--weight-display-xl);
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold-hi);
+    outline-offset: 2px;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  /* No decorative box-shadows anywhere per §3.5 / §5 — flat by design. */
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+@layer utilities {
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .data-numeral {
+    font-family: var(--font-display);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .grain-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    mix-blend-mode: overlay;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .skip-link {
+    position: fixed;
+    top: -60px;
+    left: var(--space-4);
+    z-index: var(--z-skip-link);
+    background: var(--gold);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    padding: var(--space-3) var(--space-4);
+    transition: top var(--dur-fast) var(--ease-standard);
+  }
+
+  .skip-link:focus {
+    top: var(--space-4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
