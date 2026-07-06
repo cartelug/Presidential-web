@@ -4,225 +4,154 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Forty Years of Transformation · Republic of Uganda · 1986–2026</title>
-  <meta name="description" content="A cinematic national record: from darkness to light, the Republic of Uganda 1986–2026 — told in five acts, verified against sources, crowned by the Living Map of forty years of works." />
+  <meta name="description" content="The official record of the Republic of Uganda, 1986–2026: forty years of peace, growth and national works — with every figure verified against its source." />
   <link rel="canonical" href="https://cartelug.github.io/Presidential-web/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Forty Years of Transformation · Republic of Uganda" />
-  <meta property="og:description" content="From a nation in ruins to a nation on the rise. The national record, 1986–2026 — a film in five acts." />
+  <meta property="og:description" content="From a nation in ruins to a nation on the rise. The national record, 1986–2026." />
   <meta property="og:url" content="https://cartelug.github.io/Presidential-web/" />
   <meta property="og:image" content="https://cartelug.github.io/Presidential-web/og-cover.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://cartelug.github.io/Presidential-web/og-cover.jpg" />
-  <meta name="theme-color" content="#0A0806" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%230A0806'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%23C9973B' stroke-width='2.5'/%3E%3Ctext x='32' y='39' font-family='Georgia,serif' font-size='20' fill='%23E8C06A' text-anchor='middle'%3E40%3C/text%3E%3C/svg%3E" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"CreativeWork","name":"Forty Years of Transformation · Republic of Uganda · 1986–2026","description":"The official 40-year record of the Republic of Uganda, 1986–2026, told as a film in five acts.","about":"Republic of Uganda national development, 1986–2026"}
-  </script>
-  <script type="module" src="/src/main.ts"></script>
+  <meta name="theme-color" content="#0B0B0A" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23F2C400'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='900' font-size='26' fill='%230B0B0A' text-anchor='middle'%3E40%3C/text%3E%3C/svg%3E" />
+  <script type="module" src="/src/site.ts"></script>
 </head>
-<body data-act="1">
-  <a class="skip-link" href="#turn">Skip to main content</a>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- THE SKY · one continuous sunrise behind the whole film -->
-  <div class="sky" aria-hidden="true">
-    <div class="sky-layer" data-sky="night"></div>
-    <div class="sky-layer" data-sky="ember"></div>
-    <div class="sky-layer" data-sky="gold"></div>
-    <div class="sky-layer" data-sky="dawn"></div>
-  </div>
-
-  <!-- THE LIVING MAP · persistent canvas of light -->
-  <div class="map-stage" id="mapStage" aria-hidden="true">
-    <canvas id="mapCanvas"></canvas>
-    <div class="map-hits" id="mapHits"></div>
-  </div>
-
-  <canvas class="grain" id="grainCanvas" aria-hidden="true"></canvas>
-
-  <header class="credit" id="credit">
-    <span class="credit-seal" aria-hidden="true">40</span>
-    <span class="credit-name">Republic of Uganda</span>
-    <span class="credit-act" id="creditAct" aria-hidden="true">Act I · Darkness</span>
-    <a class="credit-sources" href="#sources">Sources</a>
+  <header class="site-header">
+    <div class="bar">
+      <a class="brand" href="index.html"><i>40</i><b>Forty Years</b><span>Republic of Uganda</span></a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="timeline.html">Timeline</a>
+        <a href="sources.html">Sources</a>
+      </nav>
+    </div>
   </header>
 
-  <main id="film">
+  <main id="main">
 
-    <!-- ACT I · DARKNESS -->
-    <section class="act act-darkness" id="darkness" data-sky="night" aria-labelledby="t-darkness">
-      <div class="pinbox">
-        <div class="darkness-inner">
-          <p class="eyebrow">Act I · The inheritance</p>
-          <h2 id="t-darkness" class="year-mark"><span class="lightline" aria-hidden="true"></span>1986</h2>
-          <ul class="ruin-figures">
-            <li><b>$330</b><span>GDP per capita <a class="fn" href="#src-4">[4]</a></span></li>
-            <li><b>60 MW</b><span>electricity, national <a class="fn" href="#src-6">[6]</a></span></li>
-            <li><b>56%</b><span>living in poverty <a class="fn" href="#src-4">[4]</a></span></li>
-          </ul>
-          <p class="ruin-line">A nation in ruins. An economy collapsed.<br />Institutions broken. And then — a turn.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ACT II · THE TURN -->
-    <section class="act act-turn" id="turn" data-sky="night" aria-labelledby="film-title">
-      <div class="pinbox">
-        <div class="turn-grid">
-          <figure class="turn-portrait" aria-hidden="false">
-            <img id="portrait" src="/images/cut-president-hero.webp" alt="The President of the Republic of Uganda" width="697" height="794" fetchpriority="high" decoding="async" />
-          </figure>
-          <div class="turn-copy">
-            <p class="eyebrow">Act II · The turn</p>
-            <h1 id="film-title" class="film-title">
-              <span class="line"><span class="w">Forty</span> <span class="w">Years</span> <span class="w">of</span></span>
-              <span class="line"><span class="w em">Transformation</span></span>
-            </h1>
-            <p class="thesis">From a nation in ruins to a nation on the rise — the record of peace restored, foundations built, and a country reconnected to itself.</p>
-            <p class="byline">Republic of Uganda · 1986–2026</p>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="hero-mark" aria-hidden="true">40</p>
+      <div class="wrap">
+        <div class="hero-copy">
+          <p class="eyebrow">Republic of Uganda · 1986–2026</p>
+          <h1 id="hero-title" class="display">Forty years of <span class="accent">transformation</span></h1>
+          <p class="lead">From a nation in ruins to a nation on the rise — the record of peace restored, foundations built, and a country reconnected to itself. Every figure verified against its source.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-yellow" href="achievements.html">See the achievements
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-outline" href="timeline.html">The timeline</a>
           </div>
         </div>
-        <div class="scroll-cue" aria-hidden="true"><i></i><span>The record</span></div>
+        <figure class="hero-figure">
+          <img src="/images/cut-president-hero.webp" alt="The President of the Republic of Uganda" width="697" height="794" fetchpriority="high" decoding="async" />
+        </figure>
       </div>
     </section>
 
-    <!-- ACT III · THE WORK -->
-    <section class="act act-work" id="work" aria-labelledby="t-work">
-      <h2 id="t-work" class="sr-only">Act III — The work, era by era</h2>
-
-      <article class="era" data-sky="night" aria-labelledby="era-90s">
-        <div class="era-media" data-speed-root>
-          <picture>
-            <source media="(max-width: 720px)" srcset="/images/fig-upe-m.webp" />
-            <img data-speed="0.08" src="/images/fig-upe.webp" alt="Students in a classroom during a lesson" width="1280" height="853" loading="lazy" decoding="async" />
-          </picture>
-        </div>
-        <div class="era-copy">
-          <p class="era-year" aria-hidden="true">1990s</p>
-          <h3 id="era-90s">Stabilisation<span class="era-dot">.</span></h3>
-          <p class="era-claim">Currency reform. A new constitution. The first direct election — and in 1997, Universal Primary Education opens the school gates to every child.</p>
-          <p class="era-figure"><b><span class="count" data-to="70" data-suffix="%+">0%</span></b><span>adult literacy, up from 43% <a class="fn" href="#src-4">[4]</a></span></p>
-        </div>
-      </article>
-
-      <article class="era" data-sky="ember" aria-labelledby="era-00s">
-        <div class="era-media" data-speed-root>
-          <picture>
-            <source media="(max-width: 720px)" srcset="/images/fig-coffee-m.webp" />
-            <img data-speed="0.08" src="/images/fig-coffee.webp" alt="Coffee beans and ripening coffee cherries" width="780" height="405" loading="lazy" decoding="async" />
-          </picture>
-        </div>
-        <div class="era-copy">
-          <p class="era-year" aria-hidden="true">2000s</p>
-          <h3 id="era-00s">Growth<span class="era-dot">.</span></h3>
-          <p class="era-claim">Steady growth returns. A landmark Refugee Act is passed, the Vision 2040 blueprint approved, and the oldest export becomes a modern engine of rural income.</p>
-          <p class="era-figure"><b>$<span class="count" data-to="986">0</span></b><span>GDP per capita, up from $330 <a class="fn" href="#src-4">[4]</a></span></p>
-        </div>
-      </article>
-
-      <article class="era" data-sky="ember" aria-labelledby="era-10s">
-        <div class="era-media" data-speed-root>
-          <picture>
-            <source media="(max-width: 720px)" srcset="/images/fig-expressway-m.webp" />
-            <img data-speed="0.08" src="/images/fig-expressway.webp" alt="Kampala–Entebbe Expressway interchange from above" width="900" height="601" loading="lazy" decoding="async" />
-          </picture>
-        </div>
-        <div class="era-copy">
-          <p class="era-year" aria-hidden="true">2010s</p>
-          <h3 id="era-10s">Transformation<span class="era-dot">.</span></h3>
-          <p class="era-claim">Expressways, new Nile crossings and industrial parks reconnect the country and its region — the 51 km airport run falls from ninety minutes to forty. <a class="fn" href="#src-3">[3]</a></p>
-          <p class="era-figure"><b><span class="count" data-to="6850">0</span> km</b><span>paved national roads <a class="fn" href="#src-1">[1]</a></span></p>
-        </div>
-      </article>
-
-      <article class="era" data-sky="gold" aria-labelledby="era-20s">
-        <div class="era-media" data-speed-root>
-          <picture>
-            <source media="(max-width: 720px)" srcset="/images/fig-karuma-m.webp" />
-            <img data-speed="0.08" src="/images/fig-karuma.webp" alt="Aerial view of Karuma dam on the Nile" width="1100" height="733" loading="lazy" decoding="async" />
-          </picture>
-        </div>
-        <div class="era-copy">
-          <p class="era-year" aria-hidden="true">2020s</p>
-          <h3 id="era-20s">Acceleration<span class="era-dot">.</span></h3>
-          <p class="era-claim">Karuma's 600 MW comes online in 2024, lifting the nation past two thousand megawatts — thirty-four times the grid this story began with.</p>
-          <p class="era-figure"><b><span class="count" data-to="2048" data-group="true">0</span> MW</b><span>generation capacity, up from 60 MW <a class="fn" href="#src-6">[6]</a></span></p>
-        </div>
-      </article>
-    </section>
-
-    <!-- ACT IV · THE LIGHT -->
-    <section class="act act-light" id="light" data-sky="gold" aria-labelledby="t-light">
-      <div class="pinbox">
-        <div class="light-head">
-          <p class="eyebrow">Act IV · The light</p>
-          <h2 id="t-light">Watch the nation ignite</h2>
-          <p class="light-sub">Forty years of works, each one placed where it stands. <span class="light-hint">Keep scrolling — touch any light for its evidence.</span></p>
-        </div>
-        <p class="light-year" id="lightYear" aria-hidden="true">1986</p>
-        <aside class="evidence" id="evidence" aria-live="polite" aria-label="Selected evidence">
-          <p class="evidence-kicker" id="evKicker">Energy · Northern</p>
-          <h3 class="evidence-title" id="evTitle">Karuma Hydropower</h3>
-          <p class="evidence-proof" id="evProof">The 600 MW station lifted national generation capacity past 2,000 MW when commissioned in 2024.</p>
-          <div class="evidence-nav">
-            <button type="button" id="evPrev" aria-label="Previous evidence">←</button>
-            <a class="evidence-src" id="evSrc" href="#src-6">Source [6]</a>
-            <button type="button" id="evNext" aria-label="Next evidence">→</button>
-          </div>
-        </aside>
+    <!-- KEY NUMBERS -->
+    <section class="stats" aria-label="Key figures">
+      <div class="wrap">
+        <div class="stat rv"><b><span class="count" data-to="986" data-prefix="$">$986</span></b><span>GDP per capita — from $330 <a href="sources.html#src-4">[4]</a></span></div>
+        <div class="stat rv"><b><span class="count" data-to="2048" data-suffix=" MW">2,048 MW</span></b><span>Electricity — from 60 MW <a href="sources.html#src-6">[6]</a></span></div>
+        <div class="stat rv"><b><span class="count" data-to="16" data-suffix="%">16%</span></b><span>Poverty — from 56% <a href="sources.html#src-4">[4]</a></span></div>
+        <div class="stat rv"><b><span class="count" data-to="1.8" data-dec="1" data-suffix="M">1.8M</span></b><span>Refugees hosted <a href="sources.html#src-5">[5]</a></span></div>
       </div>
     </section>
 
-    <!-- THE REGISTER · full works index (the accessible path to every light) -->
-    <section class="act act-register" data-sky="gold" aria-labelledby="t-register">
-      <div class="register-head">
-        <h2 id="t-register">The works, on the record</h2>
-        <p>Every light on the map, in order of ignition.</p>
-      </div>
-      <ol class="register" id="register"></ol>
-    </section>
-
-    <!-- ACT V · THE ADDRESS -->
-    <section class="act act-address" id="address" data-sky="dawn" aria-labelledby="t-address">
-      <figure class="address-scene" data-speed-root>
-        <img data-speed="0.06" src="/images/bg-inheritance.webp" alt="The President greeting citizens outdoors" width="1200" height="1389" loading="lazy" decoding="async" />
-        <figcaption><span>Among the people</span><span>Republic of Uganda</span></figcaption>
-      </figure>
-
-      <div class="address-copy">
-        <p class="eyebrow">Act V · The address</p>
-        <h2 id="t-address">Four decades. One journey.<br /><em>A transformed nation.</em></h2>
-        <p class="address-lead">The figures on this page are not promises — they are records. What was inherited in darkness has been returned in light: capacity built, regions reconnected, a generation schooled, and a door held open for one million eight hundred thousand people seeking refuge. <a class="fn" href="#src-5">[5]</a></p>
-      </div>
-
-      <div class="next-chapter" data-speed-root>
-        <picture>
-          <source media="(max-width: 720px)" srcset="/images/fig-health-m.webp" />
-          <img data-speed="0.05" src="/images/fig-health.webp" alt="Health workers attending to newborns in a modern clinic" width="1024" height="683" loading="lazy" decoding="async" />
-        </picture>
-        <div class="next-copy">
-          <h3>The next chapter is already breathing</h3>
-          <p>In the neonatal wards of new regional hospitals, the record's next forty years have begun.</p>
+    <!-- EXPLORE -->
+    <section class="section" aria-labelledby="explore-title">
+      <div class="wrap">
+        <div class="section-head rv">
+          <p class="eyebrow">The record</p>
+          <h2 id="explore-title" class="title">Explore forty years of work</h2>
+        </div>
+        <div class="cards">
+          <a class="card rv" href="achievements.html">
+            <figure><img src="/images/fig-karuma.webp" alt="Aerial view of Karuma dam on the Nile" width="1100" height="733" loading="lazy" decoding="async" /></figure>
+            <div class="card-body">
+              <h3>Achievements</h3>
+              <p>Energy, roads, education, health and refuge — the record sector by sector, with the figures that prove it.</p>
+              <span class="go">View the record</span>
+            </div>
+          </a>
+          <a class="card rv" href="timeline.html">
+            <figure><img src="/images/fig-expressway.webp" alt="Kampala–Entebbe Expressway interchange from above" width="900" height="601" loading="lazy" decoding="async" /></figure>
+            <div class="card-body">
+              <h3>Timeline</h3>
+              <p>From 1986 to 2026 — five eras of rebuilding, stabilisation, growth, transformation and acceleration.</p>
+              <span class="go">Follow the years</span>
+            </div>
+          </a>
+          <a class="card rv" href="sources.html">
+            <figure><img src="/images/fig-upe.webp" alt="Students in a classroom during a lesson" width="1280" height="853" loading="lazy" decoding="async" /></figure>
+            <div class="card-body">
+              <h3>Sources</h3>
+              <p>Nothing on this site is unsourced. Every number resolves to an official register of publications.</p>
+              <span class="go">Check the sources</span>
+            </div>
+          </a>
         </div>
       </div>
+    </section>
 
-      <div class="signature">
-        <img class="signature-portrait" src="/images/cut-president-hero.webp" alt="" width="697" height="794" loading="lazy" decoding="async" aria-hidden="true" />
-        <p class="signature-line">The record continues.</p>
-        <p class="signature-sub">State House · Republic of Uganda · 1986–2026</p>
+    <!-- QUOTE -->
+    <section class="quote" aria-label="Among the people">
+      <div class="wrap">
+        <figure class="rv">
+          <img src="/images/bg-inheritance.webp" alt="The President greeting citizens outdoors" width="1200" height="1389" loading="lazy" decoding="async" />
+        </figure>
+        <div class="rv">
+          <blockquote>The figures on this page are not promises. They are records — of capacity built, regions reconnected, and a generation given a future.</blockquote>
+          <cite>State House · Republic of Uganda</cite>
+        </div>
       </div>
+    </section>
 
-      <section class="sources" id="sources" aria-labelledby="t-sources">
-        <h3 id="t-sources">Sources &amp; methodology</h3>
-        <ol id="sourceList"></ol>
-        <p class="sources-note">Figures are stated against the most recent published data at time of writing. Where estimates vary between publications, the more conservative figure is used.</p>
-      </section>
-
-      <footer class="foot">
-        <span>Forty Years of Transformation</span>
-        <span class="foot-ribbon" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span>Republic of Uganda · 1986–2026</span>
-      </footer>
+    <!-- CTA -->
+    <section class="cta-strip" aria-label="Continue">
+      <div class="wrap">
+        <h2>See what forty years built.</h2>
+        <a class="btn btn-yellow" href="achievements.html">The achievements
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="top">
+      <div>
+        <a class="brand" href="index.html"><i>40</i><b>Forty Years</b></a>
+        <p>The official 40-year record of the Republic of Uganda, 1986–2026. Built on verified figures and official sources.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h3>Pages</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="achievements.html">Achievements</a></li>
+          <li><a href="timeline.html">Timeline</a></li>
+          <li><a href="sources.html">Sources</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h3>Republic of Uganda</h3>
+        <ul>
+          <li><a href="sources.html">Sources &amp; methodology</a></li>
+          <li><a href="achievements.html">The national record</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="base">
+      <span>Forty Years of Transformation</span>
+      <span class="ribbon" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>1986–2026</span>
+    </div>
+  </footer>
 </body>
 </html>
