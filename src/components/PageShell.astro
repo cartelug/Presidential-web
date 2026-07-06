@@ -94,6 +94,7 @@ const connectSrc = ['\'self\'', analyticsOrigin].filter(Boolean).join(' ');
 
       import('../lib/motion').then(({ initMotion }) => initMotion());
       import('../lib/reveal').then(({ initReveals }) => initReveals());
+      import('../lib/parallax').then(({ initParallax }) => initParallax());
       import('../lib/analytics').then(({ initAnalyticsIfConsented }) => initAnalyticsIfConsented());
     </script>
   </body>

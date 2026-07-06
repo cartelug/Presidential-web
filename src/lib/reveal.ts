@@ -27,6 +27,11 @@ export function initReveals(root: ParentNode = document): void {
           duration: durations.base,
           ease: eases.standard,
           stagger: { each: stagger.max, from: 'start' },
+          // Clears the inline transform GSAP leaves behind once the tween settles,
+          // so any element also under lerped parallax (parallax.ts, transform:
+          // translateY(var(--py))) gets its stylesheet rule back instead of being
+          // stuck on GSAP's last inline value.
+          clearProps: 'transform',
         });
       },
     });

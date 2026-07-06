@@ -170,10 +170,11 @@ const jsonLd = [
     </div>
     <div class="achievements-bands">
       {achievements.map((a) => (
-        <article class={`achievement-band align-${a.align}`} data-reveal-group>
+        <article class={`achievement-band align-${a.align}`} data-reveal-group data-speed-root>
           <ResponsivePicture
             class="achievement-image"
             data-reveal
+            data-speed="0.08"
             name={a.image}
             alt={a.img.alt}
             sizes="(max-width: 900px) 92vw, 45vw"
@@ -591,12 +592,19 @@ const jsonLd = [
   }
   .achievement-band picture {
     display: block;
+    overflow: hidden;
+    border-radius: 4px;
   }
   .achievement-band img {
     width: 100%;
     height: auto;
     aspect-ratio: 4 / 3;
     object-fit: cover;
+    /* lerped parallax (src/lib/parallax.ts) drives --py; the 1.08 overscan
+       gives the translate headroom so it never uncovers the picture's edge.
+       Falls back to translateY(0) so the image sits still until JS boots
+       or under reduced motion. */
+    transform: scale(1.12) translateY(var(--py, 0px));
   }
   .achievement-claim {
     font-family: var(--font-display);

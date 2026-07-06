@@ -41,6 +41,16 @@ export const eases = {
   scrub: 'none',
 };
 
+/**
+ * Lenis's own default easing (exponential decay), not an approximation —
+ * matches the exact curve `new Lenis({ lerp: 0.1 })` above resolves to for
+ * its scroll deceleration. GSAP accepts a plain (t) => t function as an
+ * `ease`, so this drops straight into any gsap.to() ease slot.
+ */
+export function lenisEase(t: number): number {
+  return t >= 1 ? 1 : 1.001 - Math.pow(2, -10 * t);
+}
+
 export const stagger = { min: 0.06, max: 0.09 };
 
 /**

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { gsap, ScrollTrigger, durations, prefersReducedMotion } from '../../lib/motion';
+import { gsap, ScrollTrigger, durations, prefersReducedMotion, lenisEase } from '../../lib/motion';
 
 interface Props {
   label: string;
@@ -39,7 +39,7 @@ export default function LedgerFigure({ label, value1986, value2026, value2026Num
         gsap.to(counter, {
           value: value2026Numeric,
           duration: durations.slow,
-          ease: 'power1.out',
+          ease: lenisEase,
           onUpdate: () => {
             el.textContent = `${formatNumber(counter.value)}${unit}`;
           },
