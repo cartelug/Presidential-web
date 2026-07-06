@@ -1,0 +1,404 @@
+/* ============================================================
+   THE LIGHT OF A NATION · visual system
+   One continuous sunrise: night → ember → gold → dawn.
+   Fraunces (display) · Schibsted Grotesk (text).
+   ============================================================ */
+
+:root {
+  --night: #0a0806;
+  --coal: #141009;
+  --ember: #7a3b1e;
+  --gold: #c9973b;
+  --gold-hi: #e8c06a;
+  --flame: #fff2d6;
+  --dawn: #f2e8cf;
+  --dawn-deep: #e4cfa0;
+  --ink: #1b140a;
+  --mist: #f4ebd8;
+  --mist-dim: rgba(244, 235, 216, 0.62);
+  --lake: #3a546e;
+
+  --serif: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+  --sans: 'Schibsted Grotesk', -apple-system, 'Segoe UI', system-ui, sans-serif;
+
+  --pad: clamp(20px, 5vw, 72px);
+  --max: 1280px;
+
+  --ease-film: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  background: var(--night);
+  color: var(--mist);
+  font-family: var(--sans);
+  font-size: 16.5px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+::selection { background: var(--gold-hi); color: var(--ink); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed; top: -48px; left: 16px; z-index: 500;
+  background: var(--gold-hi); color: var(--ink);
+  font-weight: 700; font-size: 13px; letter-spacing: 0.04em;
+  padding: 10px 18px; text-decoration: none; border-radius: 2px;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 12px; }
+
+:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
+
+/* ---------- THE SKY ---------- */
+.sky { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: var(--night); }
+.sky-layer { position: absolute; inset: 0; opacity: 0; transition: opacity 1.1s var(--ease-film); }
+.sky-layer[data-sky='night'] {
+  opacity: 1;
+  background: radial-gradient(120% 90% at 50% 10%, var(--coal) 0%, var(--night) 70%);
+}
+.sky-layer[data-sky='ember'] {
+  background:
+    radial-gradient(90% 70% at 50% 108%, rgba(122, 59, 30, 0.55) 0%, transparent 60%),
+    linear-gradient(180deg, var(--night) 30%, #2a1509 100%);
+}
+.sky-layer[data-sky='gold'] {
+  background:
+    radial-gradient(110% 85% at 50% 112%, rgba(201, 151, 59, 0.5) 0%, rgba(122, 59, 30, 0.28) 45%, transparent 72%),
+    linear-gradient(180deg, #170f07 15%, #3a2410 100%);
+}
+.sky-layer[data-sky='dawn'] {
+  background: linear-gradient(180deg, #6b4a20 0%, var(--dawn-deep) 55%, var(--dawn) 100%);
+}
+
+/* ---------- THE LIVING MAP (persistent) ---------- */
+.map-stage {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0.38;
+  transform: translateX(18vw) scale(0.92);
+  will-change: transform, opacity;
+}
+#mapCanvas { width: min(92vw, 100vh, 860px); height: min(92vw, 100vh, 860px); }
+.map-hits { position: absolute; pointer-events: none; }
+.map-hit {
+  position: absolute; transform: translate(-50%, -50%);
+  width: 34px; height: 34px; border-radius: 50%;
+  background: transparent; border: 0; cursor: pointer;
+  pointer-events: none; opacity: 0;
+}
+body[data-act='4'] .map-hit.lit { pointer-events: auto; opacity: 1; }
+.map-hit:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; border-radius: 50%; }
+
+/* ---------- GRAIN ---------- */
+.grain {
+  position: fixed; inset: 0; z-index: 90; pointer-events: none;
+  opacity: 0.055; mix-blend-mode: overlay;
+}
+
+/* ---------- CREDIT (header) ---------- */
+.credit {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; gap: 14px;
+  padding: 18px var(--pad);
+  opacity: 0; transform: translateY(-8px);
+  transition: opacity 0.9s var(--ease-film), transform 0.9s var(--ease-film);
+}
+body.lit .credit, html.no-js .credit { opacity: 1; transform: none; }
+.credit-seal {
+  width: 34px; height: 34px; flex: none;
+  border: 1.5px solid var(--gold); border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--serif); font-size: 14px; color: var(--gold-hi);
+}
+.credit-name { font-weight: 700; font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; }
+.credit-act { margin-left: auto; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mist-dim); }
+.credit-sources { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--gold-hi); text-decoration: none; border-bottom: 1px solid rgba(232, 192, 106, 0.4); }
+.credit-sources:hover { border-color: var(--gold-hi); }
+body[data-act='5'] .credit { color: var(--ink); }
+body[data-act='5'] .credit-act { color: rgba(27, 20, 10, 0.6); }
+body[data-act='5'] .credit-sources { color: #7a5314; border-color: rgba(122, 83, 20, 0.4); }
+
+/* ---------- SHARED ---------- */
+main { position: relative; z-index: 10; }
+.act { position: relative; }
+.pinbox {
+  min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 var(--pad);
+}
+.eyebrow {
+  font-weight: 700; font-size: 11.5px; letter-spacing: 0.26em;
+  text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 14px; margin-bottom: 22px;
+}
+.eyebrow::before { content: ''; width: 34px; height: 2px; background: var(--gold); flex: none; }
+.fn {
+  font-size: 0.62em; font-weight: 700; vertical-align: super;
+  color: var(--gold-hi); text-decoration: none; margin-left: 2px;
+}
+.fn:hover { text-decoration: underline; }
+
+/* ---------- ACT I · DARKNESS ---------- */
+.darkness-inner { max-width: var(--max); margin: 0 auto; width: 100%; }
+.year-mark {
+  font-family: var(--serif); font-weight: 560;
+  font-size: clamp(6rem, 24vw, 21rem); line-height: 0.85;
+  letter-spacing: -0.03em; color: var(--flame);
+  display: flex; align-items: center; gap: clamp(16px, 3vw, 44px);
+  font-variant-numeric: lining-nums;
+}
+.lightline { display: block; height: 2px; flex: 0 0 clamp(48px, 12vw, 180px); background: linear-gradient(90deg, transparent, var(--gold-hi)); }
+.ruin-figures {
+  list-style: none; display: flex; gap: clamp(28px, 6vw, 90px);
+  flex-wrap: wrap; margin: clamp(34px, 6vh, 64px) 0 0;
+}
+.ruin-figures b {
+  display: block; font-family: var(--serif); font-weight: 600;
+  font-size: clamp(1.9rem, 4.2vw, 3.4rem); line-height: 1;
+  color: var(--mist); font-variant-numeric: lining-nums tabular-nums;
+}
+.ruin-figures span { display: block; margin-top: 8px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mist-dim); }
+.ruin-line {
+  margin-top: clamp(30px, 5vh, 56px);
+  font-family: var(--serif); font-style: italic; font-weight: 480;
+  font-size: clamp(1.15rem, 2vw, 1.6rem); line-height: 1.6; color: var(--mist-dim);
+}
+
+/* ---------- ACT II · THE TURN ---------- */
+.turn-grid {
+  max-width: var(--max); margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 5fr 7fr;
+  gap: clamp(24px, 4vw, 64px); align-items: center;
+}
+.turn-portrait { position: relative; }
+.turn-portrait::before {
+  content: ''; position: absolute; inset: 8% -6% -4% -6%;
+  background: radial-gradient(70% 60% at 50% 42%, rgba(201, 151, 59, 0.3), transparent 70%);
+  filter: blur(14px); z-index: -1;
+}
+#portrait {
+  width: min(100%, 460px);
+  filter: drop-shadow(0 26px 44px rgba(0, 0, 0, 0.6));
+}
+.film-title {
+  font-family: var(--serif); font-weight: 580;
+  font-size: clamp(2.9rem, 7vw, 6.6rem); line-height: 0.98;
+  letter-spacing: -0.018em; color: var(--mist); margin-bottom: 28px;
+  text-wrap: balance;
+}
+.film-title .line { display: block; overflow: hidden; padding-block: 0.04em; }
+.film-title .w { display: inline-block; }
+.film-title .em { font-style: italic; font-weight: 500; color: var(--gold-hi); }
+.thesis { font-size: clamp(15.5px, 1.5vw, 19px); color: var(--mist-dim); max-width: 46ch; margin-bottom: 20px; }
+.byline { font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+.scroll-cue {
+  position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold);
+}
+.scroll-cue i { width: 1.5px; height: 34px; background: linear-gradient(180deg, var(--gold-hi), transparent); display: block; }
+
+/* ---------- ACT III · THE WORK ---------- */
+.act-work { display: flex; flex-direction: column; }
+.era {
+  min-height: 100svh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: clamp(24px, 4vw, 72px);
+  padding: clamp(60px, 10vh, 120px) var(--pad);
+  max-width: calc(var(--max) + 2 * var(--pad)); margin: 0 auto; width: 100%;
+}
+.era:nth-child(odd) .era-media { order: 2; }
+.era-media { overflow: hidden; border-radius: 3px; position: relative; }
+.era-media::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(200deg, rgba(201, 151, 59, 0.12), rgba(10, 8, 6, 0.35) 80%);
+  pointer-events: none;
+}
+.era-media img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  transform: scale(1.12) translateY(var(--py, 0px));
+}
+.era-year {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(3.4rem, 8vw, 7rem); line-height: 1;
+  color: var(--gold-hi); opacity: 0.92;
+  font-variant-numeric: lining-nums;
+}
+.era-copy h3 {
+  font-family: var(--serif); font-weight: 580;
+  font-size: clamp(1.9rem, 3.4vw, 3rem); line-height: 1.05;
+  margin: 10px 0 18px; color: var(--mist);
+}
+.era-dot { color: var(--gold-hi); }
+.era-claim { color: var(--mist-dim); max-width: 46ch; margin-bottom: 26px; }
+.era-figure b {
+  display: block; font-family: var(--serif); font-weight: 600;
+  font-size: clamp(2.4rem, 5vw, 4.2rem); line-height: 1; color: var(--flame);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+/* child combinator on purpose: the .count span inside <b> must inherit the
+   monumental size, not the label style */
+.era-figure > span { display: block; margin-top: 8px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mist-dim); }
+
+/* ---------- ACT IV · THE LIGHT ---------- */
+.act-light .pinbox { justify-content: flex-start; padding-top: clamp(84px, 12vh, 130px); }
+.light-head { max-width: 620px; }
+.light-head h2 {
+  font-family: var(--serif); font-weight: 580;
+  font-size: clamp(2.2rem, 5vw, 4.2rem); line-height: 1.02; color: var(--mist);
+  margin-bottom: 16px; text-wrap: balance;
+}
+.light-sub { color: var(--mist-dim); max-width: 44ch; }
+.light-hint { color: var(--gold-hi); }
+.light-year {
+  position: absolute; right: var(--pad); top: clamp(84px, 12vh, 130px);
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(2.6rem, 6vw, 5rem); line-height: 1; color: var(--gold-hi);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.evidence {
+  position: absolute; left: var(--pad); bottom: clamp(28px, 6vh, 72px);
+  width: min(400px, calc(100vw - 2 * var(--pad)));
+  background: rgba(10, 8, 6, 0.72);
+  border: 1px solid rgba(201, 151, 59, 0.3);
+  border-radius: 3px; padding: 22px 24px;
+  backdrop-filter: blur(10px);
+}
+.evidence-kicker { font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.evidence-title { font-family: var(--serif); font-weight: 580; font-size: 1.45rem; line-height: 1.1; margin-bottom: 10px; color: var(--flame); }
+.evidence-proof { font-size: 14px; color: var(--mist-dim); margin-bottom: 16px; }
+.evidence-nav { display: flex; align-items: center; gap: 14px; }
+.evidence-nav button {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: transparent; border: 1.5px solid rgba(232, 192, 106, 0.5);
+  color: var(--gold-hi); font-size: 15px; cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+.evidence-nav button:hover { background: var(--gold-hi); color: var(--ink); }
+.evidence-src { margin-inline: auto; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--gold-hi); text-decoration: none; border-bottom: 1px solid rgba(232, 192, 106, 0.4); }
+
+/* ---------- THE REGISTER ---------- */
+.act-register { padding: clamp(70px, 12vh, 140px) var(--pad); }
+.register-head { max-width: var(--max); margin: 0 auto 40px; }
+.register-head h2 { font-family: var(--serif); font-weight: 580; font-size: clamp(1.9rem, 4vw, 3.2rem); color: var(--mist); margin-bottom: 8px; }
+.register-head p { color: var(--mist-dim); }
+.register {
+  list-style: none; max-width: var(--max); margin: 0 auto;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1px; background: rgba(201, 151, 59, 0.22);
+  border: 1px solid rgba(201, 151, 59, 0.22);
+}
+.register li { background: var(--night); }
+.register button {
+  width: 100%; text-align: left; background: transparent; border: 0;
+  color: inherit; font: inherit; cursor: pointer;
+  padding: 20px 22px; transition: background 0.3s;
+}
+.register button:hover, .register button[aria-pressed='true'] { background: rgba(201, 151, 59, 0.1); }
+.register .r-year { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; color: var(--gold-hi); font-variant-numeric: lining-nums; }
+.register .r-label { display: block; font-weight: 700; font-size: 15px; margin: 4px 0 6px; color: var(--mist); }
+.register .r-meta { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mist-dim); }
+
+/* ---------- ACT V · THE ADDRESS ---------- */
+.act-address { background: var(--dawn); color: var(--ink); }
+.address-scene { position: relative; overflow: hidden; max-height: 86svh; }
+.address-scene img { width: 100%; object-fit: cover; object-position: 50% 22%; transform: scale(1.1) translateY(var(--py, 0px)); }
+.address-scene::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(107, 74, 32, 0.28), transparent 40%, rgba(242, 232, 207, 0.9) 96%);
+  pointer-events: none;
+}
+.address-scene figcaption {
+  position: absolute; left: var(--pad); right: var(--pad); bottom: 14px;
+  display: flex; justify-content: space-between;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(27, 20, 10, 0.66);
+}
+.address-copy { max-width: 820px; margin: 0 auto; padding: clamp(64px, 10vh, 120px) var(--pad) clamp(40px, 6vh, 80px); text-align: center; }
+.address-copy .eyebrow { justify-content: center; color: #8a5f1a; }
+.address-copy .eyebrow::before { background: #8a5f1a; }
+.address-copy h2 {
+  font-family: var(--serif); font-weight: 580;
+  font-size: clamp(2.4rem, 6vw, 5rem); line-height: 1.04; letter-spacing: -0.015em;
+  margin-bottom: 26px; text-wrap: balance;
+}
+.address-copy em { font-style: italic; color: #8a5f1a; }
+.address-lead { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.75; color: rgba(27, 20, 10, 0.78); }
+.address-lead .fn { color: #8a5f1a; }
+
+.next-chapter {
+  max-width: var(--max); margin: 0 auto; padding: 0 var(--pad);
+  display: grid; grid-template-columns: 7fr 5fr; gap: clamp(24px, 4vw, 64px); align-items: center;
+}
+.next-chapter picture { display: block; overflow: hidden; border-radius: 3px; }
+.next-chapter img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transform: scale(1.1) translateY(var(--py, 0px)); }
+.next-copy h3 { font-family: var(--serif); font-weight: 580; font-size: clamp(1.6rem, 2.8vw, 2.4rem); line-height: 1.1; margin-bottom: 14px; }
+.next-copy p { color: rgba(27, 20, 10, 0.72); max-width: 38ch; }
+
+.signature { text-align: center; padding: clamp(70px, 12vh, 140px) var(--pad) clamp(50px, 8vh, 90px); }
+.signature-portrait {
+  width: clamp(120px, 16vw, 180px); margin: 0 auto 22px;
+  filter: drop-shadow(0 14px 26px rgba(107, 74, 32, 0.4));
+}
+.signature-line { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: clamp(1.5rem, 3vw, 2.3rem); }
+.signature-sub { margin-top: 10px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(27, 20, 10, 0.55); }
+
+.sources { max-width: 820px; margin: 0 auto; padding: 0 var(--pad) clamp(60px, 8vh, 100px); }
+.sources h3 { font-weight: 700; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a5f1a; margin-bottom: 18px; }
+.sources ol { list-style: none; display: grid; gap: 10px; }
+.sources li { font-size: 13.5px; color: rgba(27, 20, 10, 0.72); display: flex; gap: 12px; }
+.sources li b { font-family: var(--serif); color: #8a5f1a; flex: none; }
+.sources-note { margin-top: 18px; font-size: 12px; color: rgba(27, 20, 10, 0.5); font-style: italic; }
+
+.foot {
+  border-top: 1px solid rgba(27, 20, 10, 0.15);
+  padding: 22px var(--pad); display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(27, 20, 10, 0.55);
+}
+.foot-ribbon { display: flex; width: 72px; height: 4px; }
+.foot-ribbon i { flex: 1; }
+.foot-ribbon i:nth-child(1) { background: #141009; }
+.foot-ribbon i:nth-child(2) { background: #f2c400; }
+.foot-ribbon i:nth-child(3) { background: #9c1a1a; }
+
+/* ---------- ACT V map & credit adjustments ---------- */
+body[data-act='5'] .map-stage { opacity: 0.12; }
+body[data-act='5'] .grain { mix-blend-mode: multiply; opacity: 0.04; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .turn-grid { grid-template-columns: 1fr; gap: 12px; }
+  .turn-portrait { order: 2; margin-top: 8px; }
+  #portrait { width: min(72vw, 340px); margin-inline: auto; }
+  .era { grid-template-columns: 1fr; min-height: auto; gap: 26px; }
+  .era:nth-child(odd) .era-media { order: 0; }
+  .next-chapter { grid-template-columns: 1fr; }
+  .light-year { position: static; margin-top: 18px; }
+  .evidence { position: static; margin-top: 26px; width: 100%; }
+  .act-light .pinbox { justify-content: flex-start; gap: 0; padding-bottom: 40px; }
+  .map-stage { transform: none; opacity: 0.3; }
+}
+
+/* ---------- NO-JS: the film as a photo-essay ---------- */
+html.no-js .map-hit { display: none; }
+html.no-js .scroll-cue { display: none; }
+
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
