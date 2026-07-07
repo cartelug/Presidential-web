@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { gsap, ScrollTrigger, durations, prefersReducedMotion } from '../../lib/motion';
 
 interface Region {
@@ -24,7 +24,16 @@ const UGANDA_OUTLINE =
 export default function RegionMap({ regions }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [hoverId, setHoverId] = useState<string | null>(null);
+  const [theme, setTheme] = useState<string | null>(null);
   const active = regions.find((r) => r.id === activeId) ?? null;
+
+  const themes = useMemo(
+    () => Array.from(new Set(regions.flatMap((r) => r.themes))).sort(),
+    [regions]
+  );
+
+  const matchesTheme = (r: Region): boolean => !theme || r.themes.includes(theme);
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -53,48 +62,103 @@ export default function RegionMap({ regions }: Props) {
     return () => trigger.kill();
   }, [regions.length]);
 
+  const spotlit = hoverId ?? activeId;
+
   return (
     <div className="region-map">
+      {themes.length > 0 && (
+        <ul className="region-themes" role="group" aria-label="Filter regions by theme">
+          <li>
+            <button
+              type="button"
+              className="region-chip"
+              aria-pressed={theme === null}
+              onClick={() => setTheme(null)}
+            >
+              All
+            </button>
+          </li>
+          {themes.map((t) => (
+            <li key={t}>
+              <button
+                type="button"
+                className="region-chip"
+                aria-pressed={theme === t}
+                onClick={() => setTheme(theme === t ? null : t)}
+              >
+                {t}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+
       <svg ref={svgRef} className="region-map-svg" viewBox="0 0 100 100" aria-hidden="true">
-        <path
-          d={UGANDA_OUTLINE}
-          fill="var(--navy-raised)"
-          stroke="var(--line)"
-          strokeWidth={0.6}
-        />
-        {regions.map((r) => (
-          <line
-            key={`line-${r.id}`}
-            data-connect-line
-            x1={HUB.x}
-            y1={HUB.y}
-            x2={r.x}
-            y2={r.y}
-            stroke="var(--gold)"
-            strokeOpacity={0.35}
-            strokeWidth={0.4}
-          />
-        ))}
-        {regions.map((r) => (
-          <g
-            key={r.id}
-            role="button"
-            tabIndex={0}
-            aria-label={`${r.name} — show region story`}
-            aria-pressed={activeId === r.id}
-            className="region-node"
-            transform={`translate(${r.x} ${r.y})`}
-            onClick={() => setActiveId(r.id === activeId ? null : r.id)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                setActiveId(r.id === activeId ? null : r.id);
-              }
-            }}
-          >
-            <circle r={activeId === r.id ? 2.6 : 1.8} fill={activeId === r.id ? 'var(--gold-hi)' : 'var(--gold)'} />
-          </g>
-        ))}
+        <path d={UGANDA_OUTLINE} fill="var(--navy-raised)" stroke="var(--line)" strokeWidth={0.6} />
+        {regions.map((r) => {
+          const lit = spotlit === r.id;
+          const dim = (theme && !matchesTheme(r)) || (spotlit && spotlit !== r.id && matchesTheme(r) === false);
+          return (
+            <line
+              key={`line-${r.id}`}
+              data-connect-line
+              x1={HUB.x}
+              y1={HUB.y}
+              x2={r.x}
+              y2={r.y}
+              stroke={lit ? 'var(--gold-hi)' : 'var(--gold)'}
+              strokeOpacity={dim ? 0.12 : lit ? 0.8 : 0.35}
+              strokeWidth={lit ? 0.6 : 0.4}
+              style={{ transition: 'stroke-opacity .3s, stroke .3s, stroke-width .3s' }}
+            />
+          );
+        })}
+        {regions.map((r) => {
+          const lit = spotlit === r.id;
+          const off = theme ? !matchesTheme(r) : false;
+          return (
+            <g
+              key={r.id}
+              role="button"
+              tabIndex={0}
+              aria-label={`${r.name} — show region story`}
+              aria-pressed={activeId === r.id}
+              className="region-node"
+              transform={`translate(${r.x} ${r.y})`}
+              opacity={off ? 0.3 : 1}
+              style={{ transition: 'opacity .3s' }}
+              onClick={() => setActiveId(r.id === activeId ? null : r.id)}
+              onPointerEnter={() => setHoverId(r.id)}
+              onPointerLeave={() => setHoverId((v) => (v === r.id ? null : v))}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActiveId(r.id === activeId ? null : r.id);
+                }
+              }}
+            >
+              {lit && <circle r={4.4} fill="var(--gold-hi)" opacity={0.18} />}
+              <circle
+                r={lit ? 2.6 : 1.8}
+                fill={lit ? 'var(--gold-hi)' : 'var(--gold)'}
+                style={{ transition: 'r .25s' }}
+              />
+              {lit && (
+                <text
+                  x={r.x < 50 ? -3.5 : 3.5}
+                  y={0}
+                  textAnchor={r.x < 50 ? 'end' : 'start'}
+                  dominantBaseline="middle"
+                  fill="var(--cream)"
+                  fontSize={3.2}
+                  style={{ fontFamily: 'var(--font-mono)', letterSpacing: '0.02em' }}
+                >
+                  {r.name}
+                </text>
+              )}
+            </g>
+          );
+        })}
       </svg>
 
       <div className="region-panel" aria-live="polite">

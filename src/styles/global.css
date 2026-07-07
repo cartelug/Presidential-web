@@ -126,6 +126,20 @@
     border: 0;
   }
 
+  /* Top scroll-progress bar. */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    z-index: var(--z-progress);
+    transform: scaleX(0);
+    transform-origin: left center;
+    background: linear-gradient(90deg, var(--gold-deep), var(--gold-hi));
+    pointer-events: none;
+  }
+
   /* Custom cursor (added by src/lib/cursor.ts; pointer:fine + motion only). */
   .has-custom-cursor,
   .has-custom-cursor a,

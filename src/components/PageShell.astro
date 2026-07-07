@@ -79,6 +79,7 @@ const connectSrc = ['\'self\'', analyticsOrigin].filter(Boolean).join(' ');
   </head>
   <body class="no-js">
     <Atmosphere />
+    <div class="scroll-progress" data-progress aria-hidden="true"></div>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <SiteHeader />
@@ -98,6 +99,7 @@ const connectSrc = ['\'self\'', analyticsOrigin].filter(Boolean).join(' ');
       import('../lib/atmosphere').then(({ initAtmosphere }) => initAtmosphere());
       import('../lib/reveal').then(({ initReveals }) => initReveals());
       import('../lib/cursor').then(({ initCursor }) => initCursor());
+      import('../lib/progress').then(({ initProgress }) => initProgress());
       import('../lib/analytics').then(({ initAnalyticsIfConsented }) => initAnalyticsIfConsented());
     </script>
   </body>

@@ -507,6 +507,12 @@ const jsonLd = [
     text-decoration: none;
     border-top: 1px solid rgb(from var(--gold-deep) r g b / 30%);
     padding-top: var(--space-3);
+    transition: border-color var(--dur-fast) var(--ease-standard);
+  }
+  :global(.ledger-figure:hover),
+  :global(.ledger-figure:focus-visible) {
+    border-top-color: var(--gold-deep);
+    outline: none;
   }
   :global(.ledger-eyebrow) {
     font-family: var(--font-mono);
@@ -519,6 +525,23 @@ const jsonLd = [
     color: var(--ink);
     line-height: 1;
     margin: var(--space-2) 0;
+    font-variant-numeric: tabular-nums;
+  }
+  /* baseline spark: fills 0→100% in sync with the count-up so the delta is seen */
+  :global(.ledger-spark) {
+    display: block;
+    height: 2px;
+    background: rgb(from var(--gold-deep) r g b / 18%);
+    overflow: hidden;
+    margin-bottom: var(--space-3);
+  }
+  :global(.ledger-spark__fill) {
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform-origin: left center;
+    transform: scaleX(0);
+    background: linear-gradient(90deg, var(--gold-deep), var(--gold));
   }
   :global(.ledger-label) {
     font-family: var(--font-mono);
@@ -526,6 +549,25 @@ const jsonLd = [
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink-soft);
+  }
+  :global(.ledger-figure__source) {
+    display: block;
+    margin-top: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+      opacity var(--dur-fast) var(--ease-standard),
+      transform var(--dur-fast) var(--ease-standard);
+  }
+  :global(.ledger-figure:hover) .ledger-figure__source,
+  :global(.ledger-figure:focus-visible) .ledger-figure__source {
+    opacity: 1;
+    transform: translateX(0);
   }
 
   /* 04 Journey */
@@ -549,6 +591,23 @@ const jsonLd = [
   :global(.era-slide) {
     flex: 0 0 100vw;
     padding-inline: var(--page-margin);
+  }
+  /* Reduced motion: the horizontal scrub never runs, so lay the eras out as a
+     readable vertical stack instead of a clipped single-slide row. */
+  @media (prefers-reduced-motion: reduce) {
+    :global(.era-timeline) {
+      height: auto;
+      overflow: visible;
+      display: block;
+    }
+    :global(.era-track) {
+      flex-direction: column;
+      gap: var(--space-24);
+      transform: none !important;
+    }
+    :global(.era-slide) {
+      flex: none;
+    }
   }
   :global(.era-year) {
     font-size: clamp(4rem, 12vw, 9rem);
@@ -659,6 +718,36 @@ const jsonLd = [
   :global(.region-node:focus-visible circle) {
     outline: 2px solid var(--gold-hi);
     outline-offset: 3px;
+  }
+  :global(.region-themes) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-6);
+  }
+  :global(.region-chip) {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mist-bright);
+    background: none;
+    border: var(--border-hairline);
+    border-radius: 999px;
+    padding: var(--space-1) var(--space-3);
+    cursor: pointer;
+    transition: color var(--dur-fast), border-color var(--dur-fast), background var(--dur-fast);
+  }
+  :global(.region-chip:hover) {
+    border-color: var(--gold);
+    color: var(--gold-hi);
+  }
+  :global(.region-chip[aria-pressed='true']) {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--ink);
   }
   :global(.region-panel) {
     border-top: var(--border-gold-hairline);
@@ -779,6 +868,12 @@ const jsonLd = [
     padding-inline: var(--page-margin);
     cursor: grab;
     scrollbar-width: none;
+    /* let vertical page scroll pass through on touch; we own horizontal */
+    touch-action: pan-y;
+  }
+  :global(.filmstrip-track.is-dragging) {
+    cursor: grabbing;
+    scroll-snap-type: none;
   }
   :global(.filmstrip-track::-webkit-scrollbar) {
     display: none;
@@ -787,17 +882,70 @@ const jsonLd = [
     flex: 0 0 min(80vw, 640px);
     scroll-snap-align: center;
     margin: 0;
+    /* continuous distance-to-center focus (driven by Filmstrip.tsx) */
+    transform: scale(var(--focus-scale, 1));
+    opacity: var(--focus-opacity, 1);
+    transition:
+      transform var(--dur-base) var(--ease-standard),
+      opacity var(--dur-base) var(--ease-standard);
   }
   :global(.filmstrip-frame img) {
     width: 100%;
     height: auto;
     aspect-ratio: 3 / 2;
     object-fit: cover;
-    filter: grayscale(0.15) sepia(0.12);
-    transition: transform 6s linear;
+    filter: grayscale(calc(0.15 + (1 - var(--focus-sat, 1)) * 0.6)) sepia(0.12)
+      saturate(var(--focus-sat, 1));
+    transition: transform 6s linear, filter var(--dur-base) var(--ease-standard);
   }
   :global(.filmstrip-frame.is-active img) {
     transform: scale(1.04);
+  }
+  /* lightbox */
+  :global(.filmstrip-lightbox) {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    background: rgb(from var(--obsidian) r g b / 92%);
+    display: grid;
+    place-items: center;
+    padding: var(--page-margin);
+    backdrop-filter: blur(6px);
+  }
+  :global(.filmstrip-lightbox figure) {
+    margin: 0;
+    max-width: min(92vw, 1200px);
+  }
+  :global(.filmstrip-lightbox img) {
+    width: 100%;
+    height: auto;
+    max-height: 78vh;
+    object-fit: contain;
+    border: var(--border-gold-hairline);
+  }
+  :global(.filmstrip-lightbox figcaption) {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--gold-hi);
+  }
+  :global(.filmstrip-lightbox__close) {
+    position: absolute;
+    top: var(--space-6);
+    right: var(--space-6);
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: var(--border-gold-hairline);
+    color: var(--gold-hi);
+    border-radius: var(--radius-control);
+    font-size: 1rem;
+    cursor: pointer;
   }
   :global(.filmstrip-frame figcaption) {
     display: flex;
