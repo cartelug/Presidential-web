@@ -2,6 +2,7 @@
 import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
 import ConsentBanner from './ConsentBanner.astro';
+import Atmosphere from './Atmosphere.astro';
 import '../styles/global.css';
 import frauncesUrl from '@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2?url';
 import schibstedUrl from '@fontsource/schibsted-grotesk/files/schibsted-grotesk-latin-400-normal.woff2?url';
@@ -77,6 +78,7 @@ const connectSrc = ['\'self\'', analyticsOrigin].filter(Boolean).join(' ');
     <link rel="preload" as="font" type="font/woff2" href={schibstedUrl} crossorigin fetchpriority="high" />
   </head>
   <body class="no-js">
+    <Atmosphere />
     <a class="skip-link" href="#main">Skip to content</a>
 
     <SiteHeader />
@@ -93,7 +95,9 @@ const connectSrc = ['\'self\'', analyticsOrigin].filter(Boolean).join(' ');
       document.body.classList.add('js');
 
       import('../lib/motion').then(({ initMotion }) => initMotion());
+      import('../lib/atmosphere').then(({ initAtmosphere }) => initAtmosphere());
       import('../lib/reveal').then(({ initReveals }) => initReveals());
+      import('../lib/cursor').then(({ initCursor }) => initCursor());
       import('../lib/analytics').then(({ initAnalyticsIfConsented }) => initAnalyticsIfConsented());
     </script>
   </body>

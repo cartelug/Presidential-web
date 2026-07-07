@@ -83,8 +83,10 @@
   --border-gold-hairline: 1px solid var(--gold-hairline);
 
   /* 3.5 Elevation & z-index */
+  --z-atmosphere: -1;
   --z-content: 0;
   --z-spine: 40;
+  --z-progress: 45;
   --z-chapter-nav: 50;
   --z-overlay: 60;
   --z-skip-link: 70;
@@ -109,4 +111,20 @@
 
   /* 3.7 Texture */
   --grain-opacity: 0.04;
+
+  /* 3.8 Atmosphere veils — chapter fills go translucent so the persistent
+     living-background layer reads through. Falls back to fully opaque under
+     reduced-transparency / more-contrast (see media query below). The base-tone
+     floors (82/88%) are chosen to preserve WCAG AA over the atmosphere. */
+  --veil-navy: color-mix(in oklab, var(--navy) 82%, transparent);
+  --veil-obsidian: color-mix(in oklab, var(--obsidian) 88%, transparent);
+  --veil-cream: color-mix(in oklab, var(--cream) 88%, transparent);
+}
+
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  :root {
+    --veil-navy: var(--navy);
+    --veil-obsidian: var(--obsidian);
+    --veil-cream: var(--cream);
+  }
 }

@@ -4,12 +4,19 @@ export function initChapterSpy(sectionIds: string[]): void {
     '[data-chapter-nav] a, .menu-overlay a'
   );
 
+  let currentId: string | null = null;
   const setActive = (id: string | null) => {
     links.forEach((link) => {
       const isMatch = id !== null && link.hash === `#${id}`;
       if (isMatch) link.setAttribute('aria-current', 'true');
       else link.removeAttribute('aria-current');
     });
+    // Single source of truth for the whole reactive system: the atmosphere
+    // palette and the EvidenceSpine both listen for chapter:change.
+    if (id && id !== currentId) {
+      currentId = id;
+      document.dispatchEvent(new CustomEvent('chapter:change', { detail: { id } }));
+    }
   };
 
   const sections = sectionIds

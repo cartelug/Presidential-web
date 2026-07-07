@@ -96,7 +96,7 @@ const jsonLd = [
       <h1 id="opening-title" data-split-text>{byslug.opening.title}</h1>
       <p class="opening-subtitle">{byslug.opening.subtitle}</p>
       <p class="opening-standfirst">{byslug.opening.standfirst}</p>
-      <a class="btn-fill" href="#ledger">{byslug.opening.cta}</a>
+      <a class="btn-fill" href="#ledger" data-magnetic="0.4" data-cursor-label="Begin">{byslug.opening.cta}</a>
     </div>
     <img
       class="opening-portrait"
@@ -242,7 +242,7 @@ const jsonLd = [
     <div class="wrap">
       <Seal class="closing-seal" variant="light" />
       <h2 id="closing-title">{byslug.record.title}</h2>
-      <a class="btn-ghost" href="#opening">{byslug.record.cta}</a>
+      <a class="btn-ghost" href="#opening" data-magnetic="0.4" data-cursor-label="Replay">{byslug.record.cta}</a>
     </div>
   </section>
 </PageShell>
@@ -318,7 +318,7 @@ const jsonLd = [
     display: grid;
     grid-template-columns: 1fr;
     align-items: end;
-    background: var(--navy);
+    background: var(--veil-navy);
     overflow: hidden;
   }
   .opening-inner {
@@ -424,7 +424,7 @@ const jsonLd = [
 
   /* 02 Inheritance */
   .chapter-inheritance {
-    background: var(--navy);
+    background: var(--veil-navy);
   }
   .chapter-inheritance h2 {
     font-size: var(--text-h1);
@@ -482,7 +482,7 @@ const jsonLd = [
 
   /* 03 Ledger — the cream chapter */
   .chapter-ledger {
-    background: var(--cream);
+    background: var(--veil-cream);
     color: var(--ink);
   }
   .chapter-ledger .eyebrow {
@@ -530,7 +530,7 @@ const jsonLd = [
 
   /* 04 Journey */
   .chapter-journey {
-    background: var(--navy);
+    background: var(--veil-navy);
     padding-bottom: 0;
   }
   .chapter-journey h2 {
@@ -567,7 +567,7 @@ const jsonLd = [
 
   /* 05 Achievements */
   .chapter-achievements {
-    background: var(--navy);
+    background: var(--veil-navy);
   }
   .achievements-bands {
     display: flex;
@@ -638,7 +638,7 @@ const jsonLd = [
 
   /* 06 Regions */
   .chapter-regions {
-    background: var(--navy);
+    background: var(--veil-navy);
   }
   :global(.region-map) {
     max-width: var(--content-max);
@@ -700,7 +700,7 @@ const jsonLd = [
 
   /* 07 Voices */
   .chapter-voices {
-    background: var(--navy);
+    background: var(--veil-navy);
   }
   :global(.voice-stage) {
     max-width: 60ch;
@@ -768,7 +768,7 @@ const jsonLd = [
 
   /* 08 In Pictures */
   .chapter-pictures {
-    background: var(--obsidian);
+    background: var(--veil-obsidian);
     padding-bottom: var(--space-16);
   }
   :global(.filmstrip-track) {
@@ -837,7 +837,7 @@ const jsonLd = [
 
   /* 09 What's Next */
   .chapter-next {
-    background: var(--navy);
+    background: var(--veil-navy);
   }
   .next-themes {
     list-style: none;
@@ -866,7 +866,7 @@ const jsonLd = [
 
   /* 10 Closing */
   .chapter-closing {
-    background: var(--cream);
+    background: var(--veil-cream);
     color: var(--ink);
     text-align: center;
   }
